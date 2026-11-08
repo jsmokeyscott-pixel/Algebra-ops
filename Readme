@@ -1,0 +1,66 @@
+# Algebra Ops 📐
+
+A self-paced algebra trainer covering Algebra I through advanced topics. It's built on the Army Experiential Learning Model (ELM) and adult learning theory (Knowles' andragogy), with GO/NO-GO standards and after action reviews.
+
+**Live:** https://jsmokeyscott-pixel.github.io/algebra-ops/
+
+No install, no accounts, no server. It's a static site, so it runs anywhere you can open an HTML file. Progress and notes save in the learner's own browser.
+
+## What's in it
+
+There are 36 tasks across 11 phases:
+
+| Phase | Tasks |
+|---|---|
+| I. Foundations | Order of operations and signed numbers, fractions, ratios and percent, evaluating expressions, like terms and distributing |
+| II. Linear equations and inequalities | One- and two-step, multi-step, literal equations, inequalities, absolute value |
+| III. Linear functions and graphs | Slope, writing linear equations, functions, domain and range |
+| IV. Systems of equations | 2×2 systems, 3×3 systems |
+| V. Exponents and radicals | Exponent rules, simplifying radicals, rational exponents |
+| VI. Polynomials and factoring | Operations, division and remainder theorem, trinomials and GCF, special patterns |
+| VII. Quadratics and complex numbers | Solving, discriminant, vertex form, complex numbers |
+| VIII. Rational and radical | Rational expressions, rational and radical equations |
+| IX. Functions II | Composition and inverses, transformations |
+| X. Exponential and logarithmic | Growth and decay, logarithms and decibels |
+| XI. Advanced topics | Sequences and series, matrices, conic sections, binomial theorem |
+
+## How each task runs (ELM)
+
+1. **Concrete experience:** a job-flavored problem attempted cold, before any instruction.
+2. **Publish and process:** the learner sees the answer and writes what they did and what happened.
+3. **Generalize new information:** the rule, plus a worked example.
+4. **Develop:** why it matters, and where the learner will use it.
+5. **Apply:** randomly generated problems that step up through three difficulty levels.
+
+**Standard:** a task is GO at 4 of the last 5, with at least 5 attempts. Showing a solution counts as a NO-GO. Reaching GO prompts a four-question AAR, which saves to the Journal.
+
+The app also includes:
+
+- **Diagnostic:** one problem per phase. It recommends a starting phase.
+- **Sandbox:** a graphing calculator where any letter other than x becomes a slider.
+- **Journal:** all reflections and AARs, with copy-to-text.
+
+## Run it locally
+
+Open `index.html` in a browser. That's it.
+
+If you want a local server instead:
+
+```bash
+npx serve .
+```
+
+## Deploy to GitHub Pages
+
+1. Create a public repo named `algebra-ops`.
+2. Upload `index.html` and `README.md`.
+3. In the repo, go to **Settings → Pages**. Set **Source: Deploy from a branch**, **Branch: main**, and **Folder: / (root)**, then save.
+4. In a minute or two, the site is live at `https://<your-username>.github.io/algebra-ops/`.
+
+## Adding or editing a task
+
+Each task lives in the `PHASES` list inside `index.html`. A task has these fields: `title`, `bloom`, `hint`, `ce` (the scenario and its item), `gni` (HTML), `dev`, and `gen(d)`. The `gen(d)` function returns a problem at difficulty `d` (1 to 3). These answer types are supported: `num`, `set`, `expr`, `fields`, `ineq`, and `choice`.
+
+## Answer entry
+
+The app accepts fractions (`3/4`), roots (`sqrt(2)`), powers (`x^2`), implied multiplication (`2x`, `(x+1)(x-3)`), `pi`, `log`, `ln`, and inequalities (`x >= -2`). An on-screen keypad helps on phones.
