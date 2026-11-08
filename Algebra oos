@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Algebra Ops</title>
+<meta name="description" content="Self-paced algebra trainer built on the Army Experiential Learning Model: 36 tasks from order of operations to conics.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e6eae1;--paper-line:rgba(70,92,60,.09);--surface:#f7f9f3;--surface2:#e2e7da;--ink:#1d2619;--muted:#56604f;--line:#c7d0bc;
+  --accent:#4d6129;--accent-ink:#f7f9f3;--accent-soft:#dde6c8;--amber:#9a6410;--amber-soft:#f3e4c4;
+  --go:#2b7a34;--go-soft:#d6ecd5;--nogo:#ad2b22;--nogo-soft:#f5d9d5;--grid:#dfe5d6;
+  --c1:#2f62c9;--c2:#c2511c;--c3:#1f8a5b;
+  --fd:'Barlow Condensed','Arial Narrow',Arial,sans-serif;--fs:'Saira Stencil One','Barlow Condensed',Impact,sans-serif;
+  --fb:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--fm:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131810;--paper-line:rgba(160,190,120,.05);--surface:#1b2117;--surface2:#242c1f;--ink:#e6eadc;--muted:#a1ab94;--line:#344029;
+  --accent:#a9c46a;--accent-ink:#131810;--accent-soft:#2b3620;--amber:#e3ac52;--amber-soft:#3a2f1a;
+  --go:#73c87b;--go-soft:#1e3420;--nogo:#f0857a;--nogo-soft:#3b201c;--grid:#252d20;
+  --c1:#7ea8ff;--c2:#ff9161;--c3:#5ed69a;color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#131810;--paper-line:rgba(160,190,120,.05);--surface:#1b2117;--surface2:#242c1f;--ink:#e6eadc;--muted:#a1ab94;--line:#344029;
+  --accent:#a9c46a;--accent-ink:#131810;--accent-soft:#2b3620;--amber:#e3ac52;--amber-soft:#3a2f1a;
+  --go:#73c87b;--go-soft:#1e3420;--nogo:#f0857a;--nogo-soft:#3b201c;--grid:#252d20;
+  --c1:#7ea8ff;--c2:#ff9161;--c3:#5ed69a;color-scheme:dark;}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:16px/1.55 var(--fb);background-color:var(--bg);
+  background-image:linear-gradient(var(--paper-line) 1px,transparent 1px),linear-gradient(90deg,var(--paper-line) 1px,transparent 1px);background-size:24px 24px;}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface);}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:2px solid var(--accent);}
+.topin{max-width:1040px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:8px 16px;}
+.brand{font-family:var(--fs);font-size:22px;letter-spacing:.02em;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;white-space:nowrap}
+nav{display:flex;gap:2px;overflow-x:auto;margin-left:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{font:600 16px var(--fd);letter-spacing:.02em;color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;padding:8px 10px 5px;cursor:pointer;white-space:nowrap}
+nav button[aria-current="page"]{color:var(--ink);border-bottom-color:var(--amber)}
+nav button:hover{color:var(--ink)}
+@media (max-width:640px){.topin{flex-wrap:wrap;padding-bottom:0}nav{margin-left:-6px;width:calc(100% + 12px)}}
+main{max-width:1040px;margin:0 auto;padding:22px 16px 72px}
+h1,h2,h3{font-family:var(--fd);font-weight:700;line-height:1.1;margin:0 0 .4em}
+h2{font-size:28px}h3{font-size:21px;margin-top:1em}
+.mono{font-family:var(--fm)}.small{font-size:13px;color:var(--muted)}.dim{color:var(--muted);font-size:14px}
+code{font-family:var(--fm);font-size:.92em;background:var(--surface2);padding:1px 5px;border-radius:4px}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.hero{padding:18px 0 8px}
+.stencil{font-family:var(--fs);font-weight:400;font-size:clamp(52px,12vw,112px);line-height:.92;color:var(--accent);margin:0 0 14px;letter-spacing:.01em}
+.lead{max-width:62ch;font-size:17px;color:var(--ink);margin:0 0 16px}
+.progress{display:flex;align-items:center;gap:12px;margin:6px 0 18px;max-width:560px}
+.bar{flex:1;height:10px;background:var(--surface2);border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.row.end{justify-content:flex-end}.row.between{justify-content:space-between}
+.btn{font:600 15px var(--fb);padding:10px 16px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;min-height:44px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent}
+.btn.small{padding:6px 12px;min-height:36px;font-size:14px}
+.btn:disabled{opacity:.45;cursor:default}
+.link{background:none;border:0;color:var(--accent);font:600 15px var(--fb);padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.callout{background:var(--amber-soft);border-left:4px solid var(--amber);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0;max-width:72ch}
+.callout.okc{background:var(--go-soft);border-left-color:var(--go)}
+.phase{margin-top:30px}
+.phead{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ink);margin-bottom:12px;padding-bottom:4px}
+.phead h2{display:flex;gap:12px;align-items:baseline;margin:0;font-size:26px}
+.roman{font-family:var(--fs);font-weight:400;color:var(--amber);font-size:24px;min-width:2.2ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.lcard{text-align:left;background:var(--surface);border:1.5px solid var(--line);border-left:5px solid var(--line);border-radius:4px;padding:12px 14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;color:var(--ink);font:inherit}
+.lcard:hover{border-color:var(--accent)}
+.lcard.prog{border-left-color:var(--amber)}.lcard.go{border-left-color:var(--go)}
+.lcard .num{font-size:12px;color:var(--muted)}.lcard .t{font-weight:600;line-height:1.3}
+.chip{font:600 12px/1 var(--fb);padding:5px 8px;border-radius:3px;background:var(--surface2);color:var(--muted);align-self:flex-start;white-space:nowrap}
+.chip.go{background:var(--go-soft);color:var(--go)}.chip.prog{background:var(--amber-soft);color:var(--amber)}.chip.nogo{background:var(--nogo-soft);color:var(--nogo)}
+.lhead{margin-bottom:6px}.lmeta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.ltitle{font-size:clamp(30px,5vw,44px)}
+.stepper{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:14px 0 14px}
+.stepper button{display:flex;gap:8px;align-items:flex-start;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:4px;padding:8px 10px;cursor:pointer;color:var(--ink);font:inherit;min-height:56px}
+.stepper button[aria-selected="true"]{border-color:var(--accent);box-shadow:inset 0 -4px 0 var(--accent)}
+.stepper .ck{flex:0 0 24px;height:24px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font:600 13px var(--fm)}
+.stepper button.done .ck{background:var(--go);border-color:var(--go);color:var(--accent-ink)}
+.stepper .st{display:flex;flex-direction:column;min-width:0}.stepper b{font:600 14px/1.2 var(--fb)}.stepper small{color:var(--muted);font-size:12px}
+@media (max-width:760px){.stepper{grid-template-columns:repeat(5,auto);overflow-x:auto;display:flex}.stepper button{flex:0 0 auto}.stepper b{white-space:nowrap}}
+.panel{background:var(--surface);border:1.5px solid var(--line);border-radius:6px;padding:20px;margin-bottom:14px}
+@media (max-width:520px){.panel{padding:14px}}
+.note{color:var(--muted);max-width:68ch;margin-top:0}
+.scenario{font-size:18px;max-width:64ch;border-left:4px solid var(--accent);padding-left:14px}
+.item{margin-top:14px}
+.item .q{font-size:19px;margin-bottom:12px;line-height:1.5}
+.sys{font-family:var(--fm);font-size:17px;margin:8px 0;padding:10px 14px;background:var(--surface2);border-radius:4px;display:inline-block;line-height:1.7}
+input[type=text],textarea{width:100%;font:17px var(--fm);padding:11px 12px;border:1.5px solid var(--line);border-radius:5px;background:var(--bg);color:var(--ink)}
+input[type=text]:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+input:disabled{opacity:.75}
+textarea{font:16px/1.5 var(--fb);resize:vertical}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.field{display:block;margin:8px 0}.field>span{display:block;font-size:14px;color:var(--muted);margin-bottom:4px}
+.keys{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.keys button{font:16px var(--fm);min-width:42px;min-height:38px;padding:4px 10px;border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:4px;cursor:pointer}
+.choices{display:grid;gap:8px}
+.choices button{text-align:left;font:16px var(--fb);padding:12px 14px;border:1.5px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);cursor:pointer}
+.choices button.right{border-color:var(--go);background:var(--go-soft)}.choices button.wrong{border-color:var(--nogo);background:var(--nogo-soft)}
+.fb:empty{display:none}
+.fb{margin-top:14px;padding:12px 14px;border-radius:0 6px 6px 0}
+.fb.go{background:var(--go-soft);border-left:5px solid var(--go)}.fb.go strong{color:var(--go)}
+.fb.nogo{background:var(--nogo-soft);border-left:5px solid var(--nogo)}.fb.nogo strong{color:var(--nogo)}
+.fb.err{background:var(--amber-soft);border-left:5px solid var(--amber)}
+.fb strong{font:700 18px var(--fd);letter-spacing:.03em}
+.sol{margin-top:6px}
+.mat{display:inline-table;vertical-align:middle;border-collapse:separate;border-left:2px solid var(--ink);border-right:2px solid var(--ink);border-radius:4px;margin:4px 3px;font-family:var(--fm);font-size:16px}
+.mat td{padding:2px 9px;text-align:right}
+.gni{max-width:72ch}
+.gni .rule{border-left:4px solid var(--accent);background:var(--accent-soft);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0;line-height:1.75}
+.gni .ex{font-family:var(--fm);font-size:15px;background:var(--surface2);padding:12px 14px;border-radius:4px;margin:12px 0;overflow-x:auto;line-height:1.7}
+.why{font-size:18px;max-width:64ch}
+.prompts{margin:6px 0 10px;padding-left:20px;color:var(--muted)}
+.stat{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.dots{display:flex;gap:6px}.dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);background:transparent}
+.dot.g{background:var(--go);border-color:var(--go)}.dot.n{background:var(--nogo);border-color:var(--nogo)}
+.hint{background:var(--amber-soft);padding:10px 14px;border-radius:5px;margin-top:10px}
+.banner{background:var(--go-soft);border:2px solid var(--go);border-radius:6px;padding:14px;margin-top:18px}
+.banner strong{font:700 22px var(--fd);color:var(--go)}
+.aar{margin-top:12px}
+.lnav{margin-top:6px}
+.grapher{margin:12px 0}
+.grapher canvas{display:block;width:100%;height:300px;border:1.5px solid var(--line);border-radius:4px;touch-action:none;cursor:grab;background:var(--surface)}
+@media (max-width:520px){.grapher canvas{height:240px}}
+.gex{display:grid;gap:6px;margin-bottom:8px}
+.gline{display:flex;gap:8px;align-items:center}.gline input{flex:1;min-width:0}
+.sw{width:14px;height:14px;border-radius:3px;flex:0 0 14px}
+.gerr{font-size:13px;color:var(--amber);white-space:nowrap}
+.gsl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px 18px;margin-top:10px}
+.gs{display:grid;grid-template-columns:auto 3.5ch 1fr;gap:8px;align-items:center}
+.gs input{width:100%;accent-color:var(--accent);min-height:28px}
+.gctl{margin-top:8px}
+.trace{margin-top:12px}.trace input{max-width:120px}
+.trout{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}.tr{display:flex;gap:6px;align-items:center}
+.ph{font-size:clamp(34px,6vw,52px)}
+.drow{display:flex;gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
+.jcard h3{margin-top:0}.jl{font:600 13px var(--fb);color:var(--muted);margin:12px 0 2px}.jt{margin:0;white-space:pre-wrap}
+.copybox{margin-top:10px;min-height:180px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <button class="brand" onclick="go('home')" aria-label="Algebra Ops dashboard">Algebra Ops</button>
+  <nav aria-label="Main">
+    <button data-v="home">Dashboard</button>
+    <button data-v="diag">Diagnostic</button>
+    <button data-v="sandbox">Sandbox</button>
+    <button data-v="journal">Journal</button>
+    <button data-v="method">Method</button>
+  </nav>
+</div></header>
+<main id="app"></main>
+<script>
+/* ===== helpers ===== */
+const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const nz=(a,b)=>{let n;do{n=ri(a,b)}while(n===0);return n};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const gcd=(a,b)=>{a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a||1};
+const M='−';
+const N=n=>n<0?M+(-n):''+n;
+const P=n=>n<0?'('+M+(-n)+')':''+n;
+const sg=n=>n===0?'':(n<0?' '+M+' '+(-n):' + '+n);
+const SUP={'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','-':'⁻'};
+const sup=n=>String(n).split('').map(c=>SUP[c]||c).join('');
+function poly(cs,v='x'){const deg=cs.length-1;let s='';cs.forEach((c,i)=>{if(!c)return;const p=deg-i;const vv=p===0?'':p===1?v:v+sup(p);const m=Math.abs(c);const body=(m===1&&p>0?'':m)+vv;s+=s===''?(c<0?M:'')+body:(c<0?' '+M+' ':' + ')+body;});return s||'0';}
+function term(c,v,first){if(!c)return '';const m=Math.abs(c);const body=(m===1?'':m)+v;return first?(c<0?M:'')+body:(c<0?' '+M+' ':' + ')+body;}
+function eqn(cs,vs,rhs){let s='';cs.forEach((c,i)=>{if(!c)return;s+=term(c,vs[i],s==='');});return (s||'0')+' = '+N(rhs);}
+function frac(n,d){if(d<0){n=-n;d=-d}const g=gcd(n,d);n/=g;d/=g;return d===1?N(n):N(n)+'/'+d;}
+const cstr=c=>c===1?'':c===-1?M:N(c);
+function mc(opts,correct){const arr=opts.map((o,i)=>({o,c:i===correct}));for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return {options:arr.map(a=>a.o),ans:arr.findIndex(a=>a.c)};}
+const mat=A=>`<table class="mat"><tbody>${A.map(r=>`<tr>${r.map(v=>`<td>${N(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+const det3=m=>m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])-m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])+m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+const Cnk=(n,k)=>{let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;return Math.round(r)};
+const fac=(a,p)=>`(${a===1?'':a===-1?'-':a}x${p<0?'-':'+'}${Math.abs(p)})`;
+const r2=v=>(Math.round(v*100)/100).toFixed(2);
+
+/* ===== expression parser ===== */
+const FN={sqrt:Math.sqrt,abs:Math.abs,ln:Math.log,log:x=>Math.log10(x),sin:Math.sin,cos:Math.cos,tan:Math.tan,exp:Math.exp};
+function tokenize(s){
+  s=String(s).replace(/[−–]/g,'-').replace(/[×·]/g,'*').replace(/÷/g,'/').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/²/g,'^2').replace(/³/g,'^3').replace(/[\[{]/g,'(').replace(/[\]}]/g,')').replace(/\s+/g,'');
+  const t=[];let i=0;
+  while(i<s.length){const c=s[i];
+    if(/[0-9.]/.test(c)){let j=i;while(j<s.length&&/[0-9.]/.test(s[j]))j++;const v=Number(s.slice(i,j));if(isNaN(v))throw 'That number doesn’t look right.';t.push({k:'n',v});i=j;continue;}
+    if(/[a-zA-Z]/.test(c)){const m=s.slice(i).match(/^(sqrt|abs|ln|log|sin|cos|tan|exp|pi)/);if(m){const w=m[1];t.push(w==='pi'?{k:'n',v:Math.PI}:{k:'f',v:w});i+=w.length;continue;}if(c==='e'){t.push({k:'n',v:Math.E});i++;continue;}t.push({k:'v',v:c});i++;continue;}
+    if('+-*/^()'.includes(c)){t.push({k:c});i++;continue;}
+    throw `Unexpected “${c}”.`;
+  }
+  return t;
+}
+function parse(str){
+  const t=tokenize(str);let p=0;
+  if(!t.length)throw 'Enter an answer first.';
+  const peek=()=>t[p],eat=k=>{if(t[p]&&t[p].k===k){p++;return true}return false};
+  function expr(){let n=term();while(peek()&&(peek().k==='+'||peek().k==='-')){const op=t[p++].k;n={t:'b',op,a:n,b:term()}}return n;}
+  function term(){let n=unary();for(;;){const k=peek()&&peek().k;if(k==='*'||k==='/'){p++;n={t:'b',op:k,a:n,b:unary()}}else if(k==='n'||k==='v'||k==='f'||k==='('){n={t:'b',op:'*',a:n,b:power()}}else break;}return n;}
+  function unary(){if(eat('-'))return {t:'neg',a:unary()};if(eat('+'))return unary();return power();}
+  function power(){const b=primary();if(eat('^'))return {t:'b',op:'^',a:b,b:unary()};return b;}
+  function primary(){const tk=t[p++];if(!tk)throw 'The expression ends too early.';
+    if(tk.k==='n')return {t:'n',v:tk.v};
+    if(tk.k==='v')return {t:'v',v:tk.v};
+    if(tk.k==='f'){let a;if(eat('(')){a=expr();if(!eat(')'))throw 'Missing a closing parenthesis.';}else a=power();return {t:'f',f:tk.v,a};}
+    if(tk.k==='('){const e=expr();if(!eat(')'))throw 'Missing a closing parenthesis.';return {t:'p',a:e};}
+    throw 'There’s an operator out of place.';}
+  const root=expr();if(p<t.length)throw 'Something extra is at the end.';return root;
+}
+function ev(n,env){switch(n.t){case 'n':return n.v;case 'v':if(!(n.v in env))throw 'Unknown letter “'+n.v+'”.';return env[n.v];case 'neg':return -ev(n.a,env);case 'p':return ev(n.a,env);case 'f':return FN[n.f](ev(n.a,env));case 'b':{const a=ev(n.a,env),b=ev(n.b,env);switch(n.op){case '+':return a+b;case '-':return a-b;case '*':return a*b;case '/':return a/b;case '^':return Math.pow(a,b);}}}return NaN;}
+function vars(n,s=new Set()){if(n.t==='v')s.add(n.v);for(const k of ['a','b'])if(n[k]&&typeof n[k]==='object')vars(n[k],s);return s;}
+function clean(s){return String(s).replace(/%/g,'').replace(/^\s*(f\s*(\^?\s*-\s*1|⁻¹)?\s*\(\s*x\s*\)|[a-zA-Z])\s*=\s*/,'').trim();}
+function numVal(s){if(!String(s).trim())throw 'Enter an answer first.';const n=parse(s);if(vars(n).size)throw 'Enter a number here, not an expression.';const v=ev(n,{});if(!isFinite(v))throw 'That doesn’t work out to a number.';return v;}
+function close(v,a,tol){if(tol!=null)return Math.abs(v-a)<=tol+1e-9;return Math.abs(v-a)<=1e-6*Math.max(1,Math.abs(a));}
+function uniqNums(arr,tol){const o=[];arr.forEach(v=>{if(!o.some(x=>close(x,v,tol)))o.push(v)});return o;}
+function equiv(n1,n2){const vs=[...new Set([...vars(n1),...vars(n2)])];let good=0;for(let t=0;t<14&&good<6;t++){const env={};vs.forEach(v=>env[v]=0.55+Math.random()*1.9);const a=ev(n1,env),b=ev(n2,env);if(!isFinite(a)||!isFinite(b))continue;if(Math.abs(a-b)>1e-6*Math.max(1,Math.abs(a),Math.abs(b)))return false;good++;}return good>=3;}
+function countF(n){if(n.t==='neg')return countF(n.a);if(n.t==='p')return 1;if(n.t==='b'&&n.op==='*')return countF(n.a)+countF(n.b);if(n.t==='b'&&n.op==='^'&&n.a.t==='p'&&n.b.t==='n')return n.b.v;return 0;}
+const FLIP={'<':'>','>':'<','<=':'>=','>=':'<='};
+const OPS={'<':'<','>':'>','<=':'≤','>=':'≥'};
+function check(item,input){
+  try{
+    if(item.type==='choice')return {ok:input===item.ans};
+    if(item.type==='fields'){const vals=input.map(s=>{if(!String(s).trim())throw 'Fill in every box.';return numVal(clean(s))});const wrong=item.fields.filter((f,i)=>!close(vals[i],f.ans,f.tol)).map(f=>f.label);return {ok:!wrong.length,msg:wrong.length?'Check: '+wrong.join(', ')+'.':''};}
+    const raw=String(input).trim();if(!raw)throw 'Enter an answer first.';
+    if(item.type==='num')return {ok:close(numVal(clean(raw)),item.ans,item.tol)};
+    if(item.type==='set'){const low=raw.toLowerCase();const none=/^(none|no\b|ns$|∅|dne)/.test(low);if(!item.ans.length)return {ok:none};if(none)return {ok:false};const got=uniqNums(raw.split(/,|;|\bor\b|\band\b/i).map(s=>s.trim()).filter(Boolean).map(s=>numVal(clean(s))),item.tol);const ans=uniqNums(item.ans,item.tol);return {ok:ans.length===got.length&&ans.every(a=>got.some(g=>close(g,a,item.tol)))};}
+    if(item.type==='expr'){const n=parse(clean(raw));if(!equiv(n,parse(item.ans)))return {ok:false};if(item.minF&&countF(n)<item.minF)return {ok:false,msg:'That’s equivalent, but it isn’t factored completely.'};return {ok:true};}
+    if(item.type==='ineq'){const s=raw.replace(/≤/g,'<=').replace(/≥/g,'>=').replace(/=</g,'<=').replace(/=>/g,'>=').replace(/[−–]/g,'-').replace(/\s+/g,'');let m=s.match(/^([a-zA-Z])(<=|>=|<|>)(.+)$/),op,val;if(m){op=m[2];val=numVal(m[3]);}else{m=s.match(/^(.+?)(<=|>=|<|>)([a-zA-Z])$/);if(!m)throw 'Use a form like x < 4 or x >= -2.';op=FLIP[m[2]];val=numVal(m[1]);}return {ok:op===item.ans.op&&close(val,item.ans.val)};}
+  }catch(e){return {err:typeof e==='string'?e:'Couldn’t read that. Check the syntax.'}}
+  return {err:'Unknown question type.'};
+}
+
+/* ===== lesson data =====
+   ELM per lesson: ce (Concrete Experience), pp (Publish & Process, shared prompts), gni, dev, apply (gen) */
+const PHASES=[
+{name:'Foundations',lessons:[
+{id:'ops',title:'Order of operations and signed numbers',bloom:'Apply',
+ hint:'Parentheses, then exponents, then × and ÷ left to right, then + and − left to right.',
+ ce:{text:'You draw 4 cans of 200 rounds and 3 loose belts of 50. You fire 120 on Table I. How many rounds are left?',item:{q:'4 × 200 + 3 × 50 − 120 = ?',type:'num',ans:830,sol:'Multiply before you add: 800 + 150 = 950. Then 950 − 120 = <b>830</b>.'}},
+ gni:`<p>Math has a fixed order so everyone gets the same answer from the same line.</p><div class="rule"><b>Order:</b> Parentheses, Exponents, Multiply and Divide (left to right), Add and Subtract (left to right).</div><div class="rule"><b>Signed numbers:</b> same signs, add and keep the sign. Different signs, subtract and keep the sign of the bigger one. Negative × negative = positive. Subtracting a negative is adding.</div><div class="ex">3 + 4 × (2 − 5)²<br>= 3 + 4 × (−3)²<br>= 3 + 4 × 9<br>= 3 + 36 = 39</div><p>Watch this one: −3² = −9 (exponent first), but (−3)² = 9.</p>`,
+ dev:'Every formula you plug numbers into, from load plans to link budgets to fuel forecasts, runs on this order. Most “calculator errors” are really order-of-operations errors.',
+ gen(d){const a=ri(-9,9),b=ri(2,9),c=nz(-6,6),e=ri(2,5),k=nz(-6,6);
+  const f=[()=>({q:`Evaluate: ${N(a)} + ${b} × ${P(c)}`,ans:a+b*c,sol:`Multiply first: ${b} × ${P(c)} = ${N(b*c)}. Then ${N(a)} + ${P(b*c)} = <b>${N(a+b*c)}</b>.`}),
+   ()=>({q:`Evaluate: (${N(a)} − ${b}) × ${P(c)} + ${e}²`,ans:(a-b)*c+e*e,sol:`Parentheses: ${N(a)} − ${b} = ${N(a-b)}. Exponent: ${e}² = ${e*e}. Multiply: ${P(a-b)} × ${P(c)} = ${N((a-b)*c)}. Add: <b>${N((a-b)*c+e*e)}</b>.`}),
+   ()=>({q:`Evaluate: ${N(a)} − ${P(e*k)} ÷ ${e} × ${b}`,ans:a-k*b,sol:`÷ and × go left to right: ${P(e*k)} ÷ ${e} = ${N(k)}, then × ${b} = ${N(k*b)}. Then ${N(a)} − ${P(k*b)} = <b>${N(a-k*b)}</b>.`})];
+  return {...pick(d===1?[f[0],f[2]]:f)(),type:'num'};}},
+{id:'frac',title:'Fractions',bloom:'Apply',
+ hint:'Add and subtract need a common denominator. Multiply straight across. Divide means flip the second fraction and multiply.',
+ ce:{text:'A fuel blivet is 3/4 full. You pump out 1/3 of its total capacity. What fraction of capacity is left?',item:{q:'3/4 − 1/3 = ? (fraction or decimal)',type:'num',ans:5/12,tol:.001,sol:'Common denominator 12: 9/12 − 4/12 = <b>5/12</b>.'}},
+ gni:`<div class="rule"><b>Add or subtract:</b> rewrite over a common denominator, then combine the numerators.</div><div class="rule"><b>Multiply:</b> top × top, bottom × bottom. <b>Divide:</b> keep, change, flip: a/b ÷ c/d = a/b × d/c.</div><div class="ex">2/3 + 1/4 = 8/12 + 3/12 = 11/12<br>2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6</div><p>Always reduce at the end by dividing top and bottom by their greatest common factor.</p>`,
+ dev:'Fractions show up in every scaled problem: map scales, mixing ratios, duty cycles, shared workloads. You type them here as 5/12.',
+ gen(d){const b=ri(2,9),e=ri(2,9);let a=ri(1,2*b-1);const c=ri(1,2*e-1);if(d===3&&Math.random()<.5)a=-a;
+  const f=pick(d===1?['+','−']:['+','−','×','÷']);let n,den,sol;
+  if(f==='+'||f==='−'){const s=f==='+'?1:-1;n=a*e+s*c*b;den=b*e;sol=`Common denominator ${den}: ${N(a*e)}/${den} ${f} ${c*b}/${den} = ${N(n)}/${den} = <b>${frac(n,den)}</b>.`;}
+  else if(f==='×'){n=a*c;den=b*e;sol=`Multiply across: ${N(n)}/${den} = <b>${frac(n,den)}</b>.`;}
+  else{n=a*e;den=b*c;sol=`Flip the second and multiply: ${N(a)}/${b} × ${e}/${c} = ${N(n)}/${den} = <b>${frac(n,den)}</b>.`;}
+  return {q:`Compute: ${N(a)}/${b} ${f} ${c}/${e}`,type:'num',ans:n/den,tol:.001,sol};}},
+{id:'ratio',title:'Ratios, proportions and percent',bloom:'Apply',
+ hint:'Proportions: cross-multiply. Percent: part = rate × whole, with the rate as a decimal.',
+ ce:{text:'Your map is 1:50,000. Two checkpoints are 6 cm apart on the map. How many meters apart are they on the ground?',item:{q:'Ground distance in meters = ?',type:'num',ans:3000,sol:'1 cm on the map = 50,000 cm on the ground. 6 × 50,000 = 300,000 cm = <b>3,000 m</b>.'}},
+ gni:`<div class="rule"><b>Proportion:</b> a/b = x/c → bx = ac → x = ac/b.</div><div class="rule"><b>Percent:</b> part = rate × whole (25% = 0.25). <b>Percent change</b> = (new − old) ÷ old × 100.</div><div class="ex">3/4 = x/20 → 4x = 60 → x = 15<br>15% of 240 = 0.15 × 240 = 36<br>80 → 100: (100 − 80)/80 = 0.25 = 25% increase</div>`,
+ dev:'Map scales, consumption rates, readiness percentages, and pay raises are all proportions. If you can set up the ratio correctly, the math is easy.',
+ gen(d){const f=pick(d===1?['prop','pct']:['prop','pct','chg']);
+  if(f==='prop'){const b=ri(2,9),m=ri(2,9),a=ri(1,12),c=b*m,x=a*m;return {q:`Solve for x: ${a}/${b} = x/${c}`,type:'num',ans:x,sol:`Cross-multiply: ${b}x = ${a} × ${c} = ${a*c}. Divide: x = <b>${x}</b>.`};}
+  if(f==='pct'){const p=pick([5,10,15,20,25,30,40,60,75,120]),n=20*ri(1,15);return {q:`What is ${p}% of ${n}?`,type:'num',ans:p*n/100,sol:`${p}% = ${p/100}. ${p/100} × ${n} = <b>${p*n/100}</b>.`};}
+  const o=20*ri(2,20),pc=pick([-50,-25,-20,-10,10,20,25,50,75,100]),nw=o*(1+pc/100);
+  return {q:`A value goes from ${o} to ${nw}. What’s the percent change? (Use a negative number for a decrease.)`,type:'num',ans:pc,sol:`(${nw} − ${o}) ÷ ${o} = ${N(pc/100)} → <b>${N(pc)}%</b>.`};}},
+{id:'eval',title:'Variables and evaluating expressions',bloom:'Apply',
+ hint:'Replace each letter with its value in parentheses, then follow the order of operations.',
+ ce:{text:'Your S4 gives you a planning formula for fuel: g = 10h + 15, where h is hours of operation and 15 covers startup and idle. Plan for a 6-hour mission.',item:{q:'g = 10(6) + 15 = ?',type:'num',ans:75,sol:'10 × 6 = 60, plus 15 = <b>75 gallons</b>.'}},
+ gni:`<p>A variable is a placeholder for a number. To <b>evaluate</b>, substitute the value and compute.</p><div class="rule">Put substituted values in parentheses, especially negatives. That keeps the signs and exponents honest.</div><div class="ex">2x² − 5x + 1 when x = −3<br>= 2(−3)² − 5(−3) + 1<br>= 2(9) + 15 + 1 = 34</div>`,
+ dev:'Every planning formula you’ll ever use, whether for fuel, rations, or link margin, is an expression you evaluate.',
+ gen(d){const x=nz(-5,5);
+  if(d===1){const a=nz(-9,9),b=nz(-9,9);return {q:`Evaluate ${poly([a,b])} when x = ${N(x)}.`,type:'num',ans:a*x+b,sol:`${N(a)}·${P(x)}${sg(b)} = ${N(a*x)}${sg(b)} = <b>${N(a*x+b)}</b>.`};}
+  if(d===2){const a=nz(-4,4),b=nz(-9,9),c=nz(-9,9),v=a*x*x+b*x+c;return {q:`Evaluate ${poly([a,b,c])} when x = ${N(x)}.`,type:'num',ans:v,sol:`x² = ${x*x}. ${N(a)}·${x*x}${sg(b)}·${P(x)}${sg(c)} = ${N(a*x*x)}${sg(b*x)}${sg(c)} = <b>${N(v)}</b>.`};}
+  const y=nz(-5,5),a=nz(-4,4),b=nz(-6,6),c=nz(-9,9),v=a*x*x+b*y+c;
+  return {q:`Evaluate ${term(a,'x²',true)}${term(b,'y',false)}${sg(c)} when x = ${N(x)} and y = ${N(y)}.`,type:'num',ans:v,sol:`${N(a)}·${x*x}${sg(b)}·${P(y)}${sg(c)} = ${N(a*x*x)}${sg(b*y)}${sg(c)} = <b>${N(v)}</b>.`};}},
+{id:'simp',title:'Like terms and the distributive property',bloom:'Apply',
+ hint:'Distribute to every term inside the parentheses (carry the sign), then add coefficients of matching terms.',
+ ce:{text:'One range lane is 3 m wide and (x + 4) m long. Another is 2 m wide and (2x − 1) m long. Total area is 3(x + 4) + 2(2x − 1). Write it as ax + b.',item:{q:'3(x + 4) + 2(2x − 1) = ax + b',type:'fields',fields:[{label:'a',ans:7},{label:'b',ans:10}],sol:'3x + 12 + 4x − 2 = <b>7x + 10</b>.'}},
+ gni:`<div class="rule"><b>Distribute:</b> a(b + c) = ab + ac. The sign travels: −2(x − 3) = −2x + 6.</div><div class="rule"><b>Like terms</b> have the same variable and power. Add their coefficients: 3x + 5x = 8x. Never combine x with x² or with constants.</div><div class="ex">4(x − 2) − 3(2x + 1)<br>= 4x − 8 − 6x − 3<br>= −2x − 11</div>`,
+ dev:'Simplifying is how you turn a messy real-world setup into something you can actually solve. It’s the cleanup step before every equation.',
+ gen(d){const a=nz(-6,6),b=nz(-9,9),c=nz(-6,6),k=ri(1,d===1?1:4),e=nz(-9,9);
+  const A=a+c*k,B=a*b+c*e;
+  return {q:`Simplify ${cstr(a)}(${poly([1,b])})${c<0?' '+M+' ':' + '}${Math.abs(c)}(${poly([k,e])}) into ax + b.`,type:'fields',fields:[{label:'a',ans:A},{label:'b',ans:B}],
+   sol:`Distribute: ${poly([a,a*b])}${c*k<0?' '+M+' ':' + '}${poly([Math.abs(c*k),0])}${sg(c*e)}. Combine: <b>${poly([A,B])}</b>.`};}}
+]},
+{name:'Linear equations and inequalities',lessons:[
+{id:'eq1',title:'One- and two-step equations',bloom:'Apply',
+ hint:'Undo operations in reverse order: undo the + or − first, then the × or ÷. Do the same thing to both sides.',
+ ce:{text:'A convoy route is 240 km. You still have 85 km to go. How far have you driven? Set it up as x + 85 = 240.',item:{q:'Solve: x + 85 = 240',type:'num',ans:155,sol:'Subtract 85 from both sides: x = <b>155 km</b>.'}},
+ gni:`<p>An equation is a balance. Whatever you do to one side, do to the other.</p><div class="rule">Undo in <b>reverse</b> order of operations: addition and subtraction first, then multiplication and division.</div><div class="ex">3x − 7 = 14<br>3x = 21 (add 7)<br>x = 7 (divide by 3)<br>Check: 3(7) − 7 = 14 ✓</div>`,
+ dev:'Any time you know the total and need the missing piece, such as remaining distance, how many more hours, or what’s left in the budget, you’re solving a one- or two-step equation.',
+ gen(d){const x=ri(-12,12);
+  if(d===1){if(Math.random()<.5){const b=nz(-15,15),c=x+b;return {q:`Solve: ${poly([1,b])} = ${N(c)}`,type:'num',ans:x,sol:`${b>0?'Subtract '+b:'Add '+(-b)} on both sides: x = <b>${N(x)}</b>.`};}
+   const a=pick([2,3,4,5,6,-2,-3,-4]),c=a*x;return {q:`Solve: ${term(a,'x',true)} = ${N(c)}`,type:'num',ans:x,sol:`Divide both sides by ${N(a)}: x = <b>${N(x)}</b>.`};}
+  let a;do{a=nz(-9,9)}while(Math.abs(a)===1);const b=nz(-15,15),c=a*x+b;
+  return {q:`Solve: ${poly([a,b])} = ${N(c)}`,type:'num',ans:x,sol:`${b>0?'Subtract '+b:'Add '+(-b)}: ${term(a,'x',true)} = ${N(c-b)}. Divide by ${N(a)}: x = <b>${N(x)}</b>.`};}},
+{id:'eq2',title:'Multi-step equations',bloom:'Apply',
+ hint:'Distribute, combine like terms on each side, get all x-terms on one side and constants on the other, then divide.',
+ ce:{text:'Radio plan A costs $40 setup plus $15 a month. Plan B costs $10 setup plus $25 a month. After how many months do they cost the same?',item:{q:'Solve: 40 + 15m = 10 + 25m',type:'num',ans:3,sol:'Subtract 15m and 10 from both sides: 30 = 10m, so m = <b>3 months</b>.'}},
+ gni:`<div class="rule"><b>Steps:</b> 1) distribute, 2) combine like terms on each side, 3) move variable terms to one side, 4) move constants to the other, 5) divide.</div><div class="ex">2(x + 3) − 4 = 5x − 13<br>2x + 2 = 5x − 13<br>15 = 3x<br>x = 5</div><div class="rule">If the variables cancel and you get something false (0 = 5), there’s <b>no solution</b>. Something true (0 = 0) means <b>every number</b> works.</div>`,
+ dev:'Break-even questions like “when do two plans cost the same?” or “when does one convoy catch the other?” are multi-step equations.',
+ gen(d){const x=ri(-10,10),a=nz(-5,5),b=nz(-6,6),c=nz(-9,9);let e2;do{e2=nz(-6,6)}while(e2===a);
+  const L=a*b+c,e=a*(x+b)+c-e2*x;
+  return {q:`Solve: ${cstr(a)}(${poly([1,b])})${sg(c)} = ${poly([e2,e])}`,type:'num',ans:x,sol:`Distribute: ${poly([a,L])} = ${poly([e2,e])}. Collect: ${term(a-e2,'x',true)} = ${N(e-L)}. Divide: x = <b>${N(x)}</b>.`};}},
+{id:'lit',title:'Literal equations and formulas',bloom:'Apply',
+ hint:'Treat every other letter like a number and isolate the target with inverse operations. Use parentheses around denominators, like I/(P*t).',
+ ce:{text:'Ohm’s law is V = IR. You measure 24 V across a load drawing 0.5 A. What’s the resistance?',item:{q:'R = V/I = ? ohms',type:'num',ans:48,sol:'R = V/I = 24/0.5 = <b>48 Ω</b>.'}},
+ gni:`<p>A literal equation has several letters. Solving it for one letter rearranges the formula so you can plug straight in.</p><div class="ex">P = 2l + 2w, solve for w<br>P − 2l = 2w<br>w = (P − 2l)/2</div><div class="rule">Here, type only the right-hand side, like <code>(P-2l)/2</code>. Capital and lowercase letters are different variables.</div>`,
+ dev:'Ohm’s law, power, wavelength, distance-rate-time: you’ll rearrange these constantly. Rearranging once beats re-deriving every time.',
+ gen(){const L=[['d = rt','t','d/r','Divide both sides by r: t = d/r.'],['A = lw','w','A/l','Divide by l: w = A/l.'],['P = 2l + 2w','l','(P-2w)/2','Subtract 2w, then divide by 2: l = (P − 2w)/2.'],['y = mx + b','x','(y-b)/m','Subtract b, divide by m: x = (y − b)/m.'],['V = IR','I','V/R','Divide by R: I = V/R.'],['F = (9/5)C + 32','C','5/9*(F-32)','Subtract 32, multiply by 5/9: C = (5/9)(F − 32).'],['A = ½bh','h','2*A/b','Multiply by 2, divide by b: h = 2A/b.'],['I = Prt','r','I/(P*t)','Divide by Pt: r = I/(Pt).'],['v = u + at','a','(v-u)/t','Subtract u, divide by t: a = (v − u)/t.'],['E = mc²','m','E/c^2','Divide by c²: m = E/c².'],['P = I²R','R','P/I^2','Divide by I²: R = P/I².'],['y − k = m(x − h)','x','(y-k)/m+h','Divide by m, add h: x = (y − k)/m + h.']];
+  const [f,v,a,s]=pick(L);return {q:`Solve <b>${f}</b> for <b>${v}</b>. Type just the right-hand side.`,type:'expr',ans:a,sol:s.replace(/: (.*)$/,': <b>$1</b>')};}},
+{id:'ineq',title:'Linear inequalities',bloom:'Apply',
+ hint:'Solve it like an equation, but if you multiply or divide by a negative, flip the inequality sign.',
+ ce:{text:'Your vehicle can carry 2,500 lb. Crew and gear weigh 900 lb. Each ammo can weighs 20 lb. How many cans, c, can you load? (Answer like c <= 50.)',item:{q:'900 + 20c ≤ 2500',type:'ineq',ans:{op:'<=',val:80},sol:'Subtract 900: 20c ≤ 1600. Divide by 20: <b>c ≤ 80</b>.'}},
+ gni:`<div class="rule">Same moves as an equation, with one exception: <b>multiplying or dividing by a negative flips the sign</b>.</div><div class="ex">−3x + 5 ≥ 17<br>−3x ≥ 12<br>x ≤ −4 (divided by −3, so ≥ became ≤)</div><p>Type answers like <code>x &lt; 4</code> or <code>x &gt;= -2</code>. The ≤ and ≥ keys work too.</p>`,
+ dev:'Limits are inequalities: weight limits, minimum scores, max range, budget caps. Real constraints are almost never “exactly equal.”',
+ gen(d){const x0=ri(-10,10),a=d===1?nz(1,7):nz(-7,7),b=nz(-9,9),op=pick(['<','>','<=','>=']),c=a*x0+b,res=a<0?FLIP[op]:op;
+  return {q:`Solve: ${poly([a,b])} ${OPS[op]} ${N(c)}`,type:'ineq',ans:{op:res,val:x0},sol:`${b>0?'Subtract '+b:'Add '+(-b)}: ${term(a,'x',true)} ${OPS[op]} ${N(c-b)}. Divide by ${N(a)}${a<0?' and flip the sign':''}: <b>x ${OPS[res]} ${N(x0)}</b>.`};}},
+{id:'abs',title:'Absolute value equations',bloom:'Apply',
+ hint:'Isolate the absolute value first. Then |A| = k splits into A = k or A = −k. A negative k means no solution.',
+ ce:{text:'A part must be within 0.5 mm of 120 mm. The limits satisfy |x − 120| = 0.5. What are the two limit values? (Separate with a comma.)',item:{q:'|x − 120| = 0.5',type:'set',ans:[119.5,120.5],sol:'x − 120 = 0.5 → 120.5; x − 120 = −0.5 → 119.5. Limits: <b>119.5 and 120.5</b>.'}},
+ gni:`<p>|A| is the distance of A from zero, so it’s never negative.</p><div class="rule">|A| = k (with k ≥ 0) → A = k or A = −k. If k &lt; 0, there’s <b>no solution</b>.</div><div class="ex">2|x − 3| + 1 = 9<br>|x − 3| = 4<br>x − 3 = 4 → x = 7<br>x − 3 = −4 → x = −1</div><div class="rule">Inequalities: |A| &lt; k means −k &lt; A &lt; k. |A| &gt; k means A &lt; −k or A &gt; k.</div><p>Type answers separated by commas, or <code>none</code>.</p>`,
+ dev:'Tolerances, error margins, and “within X of target” specs are all absolute value. It’s how quality control and range estimation think.',
+ gen(d){const h=nz(-9,9),k=ri(1,9),a=d>1?pick([1,2,3]):1,m=d>1?nz(-6,6):0,none=d===3&&Math.random()<.3;
+  const n=none?m-a*ri(1,5):a*k+m,inner=poly([1,-h]);
+  return {q:`Solve: ${a===1?'':a}|${inner}|${sg(m)} = ${N(n)} &nbsp;<span class="dim">(comma-separated, or “none”)</span>`,type:'set',ans:none?[]:[h+k,h-k],
+   sol:none?`Isolate: |${inner}| = ${frac(n-m,a)}. An absolute value can’t be negative, so there’s <b>no solution</b>.`:`Isolate: |${inner}| = ${k}. Split: ${inner} = ${k} → x = ${N(h+k)}, or ${inner} = ${M}${k} → x = ${N(h-k)}. <b>x = ${N(h+k)}, ${N(h-k)}</b>.`};}}
+]},
+{name:'Linear functions and graphs',lessons:[
+{id:'slope',title:'Slope and rate of change',bloom:'Understand',
+ hint:'Slope = (y₂ − y₁)/(x₂ − x₁). Subtract in the same order top and bottom.',
+ ce:{text:'Drag the sliders. The line is y = a·x + b. Find the setting that makes the line rise 2 units for every 1 unit to the right.',graph:{exprs:['a*x+b'],params:{a:1,b:0}},item:{q:'What value of a does that?',type:'num',ans:2,sol:'Rise over run = 2/1 = <b>2</b>. The number in front of x is the slope.'}},
+ gni:`<div class="rule"><b>Slope</b> m = rise/run = (y₂ − y₁)/(x₂ − x₁).</div><p>Positive slope rises left to right. Negative falls. Zero is flat. A vertical line has undefined slope (you’d divide by zero).</p><div class="ex">(1, 2) and (4, 11)<br>m = (11 − 2)/(4 − 1) = 9/3 = 3</div>`,
+ dev:'Slope is a rate: km per hour, dB per km, gallons per hour, dollars per month. Reading a rate off a graph or a table is reading slope.',
+ gen(){const x1=ri(-8,8),y1=ri(-8,8);let x2;do{x2=ri(-8,8)}while(x2===x1);const y2=ri(-8,8);
+  return {q:`Find the slope through (${N(x1)}, ${N(y1)}) and (${N(x2)}, ${N(y2)}).`,type:'num',ans:(y2-y1)/(x2-x1),tol:.001,sol:`m = (${N(y2)} − ${P(y1)})/(${N(x2)} − ${P(x1)}) = ${N(y2-y1)}/${N(x2-x1)} = <b>${frac(y2-y1,x2-x1)}</b>.`};}},
+{id:'line',title:'Writing linear equations',bloom:'Apply',
+ hint:'Find m first, then b = y₁ − m·x₁. Perpendicular slopes are negative reciprocals.',
+ ce:{text:'A tower climber goes at a steady rate. At 3 minutes he’s at 50 ft. At 7 minutes he’s at 110 ft. Write height as h = mt + b.',item:{q:'Find m and b.',type:'fields',fields:[{label:'m (ft per min)',ans:15},{label:'b (starting height)',ans:5}],sol:'m = (110 − 50)/(7 − 3) = 15. b = 50 − 15·3 = 5. <b>h = 15t + 5</b>. He started on a 5 ft platform.'}},
+ gni:`<div class="rule"><b>Slope-intercept:</b> y = mx + b (b is where it crosses the y-axis).<br><b>Point-slope:</b> y − y₁ = m(x − x₁).</div><div class="rule">Parallel lines have the same m. Perpendicular slopes multiply to −1, so m₂ = −1/m₁.</div><div class="ex">Through (2, 7) and (5, 13)<br>m = 6/3 = 2<br>b = 7 − 2·2 = 3<br>y = 2x + 3</div><p>Type the right side, like <code>2x+3</code>.</p>`,
+ dev:'Two data points are enough to build a model and predict. That’s how you’d estimate time to complete, cost at volume, or drift over time.',
+ gen(d){const b=ri(-9,9);
+  if(d<3){const m=nz(-5,5),x1=ri(-5,5);let x2;do{x2=ri(-5,5)}while(x2===x1);const y1=m*x1+b,y2=m*x2+b;
+   if(d===1)return {q:`Write the line with slope ${N(m)} through (${N(x1)}, ${N(y1)}). Form: y = mx + b`,type:'expr',ans:`${m}*x+(${b})`,sol:`b = ${N(y1)} − ${P(m)}·${P(x1)} = ${N(b)}. <b>y = ${poly([m,b])}</b>.`};
+   return {q:`Write the line through (${N(x1)}, ${N(y1)}) and (${N(x2)}, ${N(y2)}). Form: y = mx + b`,type:'expr',ans:`${m}*x+(${b})`,sol:`m = (${N(y2)} − ${P(y1)})/(${N(x2)} − ${P(x1)}) = ${N(m)}. b = ${N(y1)} − ${P(m)}·${P(x1)} = ${N(b)}. <b>y = ${poly([m,b])}</b>.`};}
+  const m=nz(-3,3),c=ri(-9,9),x1=ri(-4,4),y1=m*x1+b,g=Math.abs(m)===1?(m>0?M:'')+'x':`(${frac(-1,m)})x`;
+  return {q:`Line L is y = ${g}${sg(c)}. Write the line perpendicular to L through (${N(x1)}, ${N(y1)}). Form: y = mx + b`,type:'expr',ans:`${m}*x+(${b})`,sol:`Negative reciprocal of ${frac(-1,m)} is ${N(m)}. b = ${N(y1)} − ${P(m)}·${P(x1)} = ${N(b)}. <b>y = ${poly([m,b])}</b>.`};}},
+{id:'func',title:'Functions, domain and range',bloom:'Understand',
+ hint:'f(k) means substitute k for x. Domain: no dividing by zero, no square roots of negatives.',
+ ce:{text:'Antenna planning: λ(f) = 300/f gives wavelength in meters for a frequency f in MHz. What’s the wavelength at 150 MHz?',item:{q:'λ(150) = ?',type:'num',ans:2,sol:'300/150 = <b>2 m</b>. A half-wave dipole for that frequency is about 1 m.'}},
+ gni:`<p>A <b>function</b> gives exactly one output for each input. f(x) is the output when the input is x.</p><div class="rule"><b>Domain</b> = inputs allowed. Exclude anything that divides by zero or takes an even root of a negative. <b>Range</b> = outputs you can get.</div><div class="ex">f(x) = x² − 3x → f(−2) = 4 + 6 = 10<br>√(x − 4): domain x ≥ 4<br>1/(x + 2): domain x ≠ −2</div>`,
+ dev:'Functions are how you think about inputs and outputs: frequency in, wavelength out; hours in, fuel out. The domain is the set of inputs that make physical sense.',
+ gen(d){const f=pick(d===1?['ev','solve']:['ev','dom','solve']);
+  if(f==='ev'){const a=nz(-3,3),b=ri(-6,6),c=ri(-9,9),k=nz(-4,4),v=a*k*k+b*k+c;return {q:`f(x) = ${poly([a,b,c])}. Find f(${N(k)}).`,type:'num',ans:v,sol:`${N(a)}·${P(k)}²${sg(b)}·${P(k)}${sg(c)} = <b>${N(v)}</b>.`};}
+  if(f==='solve'){const m=nz(-6,6),b=nz(-9,9),x=ri(-8,8),v=m*x+b;return {q:`f(x) = ${poly([m,b])}. For what x is f(x) = ${N(v)}?`,type:'num',ans:x,sol:`${poly([m,b])} = ${N(v)} → ${term(m,'x',true)} = ${m!==1?`${N(v-b)} → <b>x = ${N(x)}</b>`:`<b>${N(x)}</b>`}.`};}
+  const a=nz(-8,8),K=[[`√(${poly([1,-a])})`,`x ≥ ${N(a)}`,'The inside of a square root can’t be negative'],[`1/(${poly([1,-a])})`,`x ≠ ${N(a)}`,'The denominator can’t be zero'],[`√(${poly([-1,a])})`,`x ≤ ${N(a)}`,'The inside of a square root can’t be negative']];
+  if(d===3)K.push([`1/√(${poly([1,-a])})`,`x > ${N(a)}`,'Inside the root must be positive, and not zero since it’s in a denominator']);
+  const [fx,ok,why]=pick(K),all=[`x ≥ ${N(a)}`,`x > ${N(a)}`,`x ≤ ${N(a)}`,`x ≠ ${N(a)}`,'All real numbers'].filter(o=>o!==ok).sort(()=>Math.random()-.5).slice(0,3),c=mc([ok,...all],0);
+  return {q:`What’s the domain of f(x) = ${fx}?`,type:'choice',options:c.options,ans:c.ans,sol:`${why}: <b>${ok}</b>.`};}}
+]},
+{name:'Systems of equations',lessons:[
+{id:'sys2',title:'Systems of two equations',bloom:'Analyze',
+ hint:'Elimination: scale the equations so one variable cancels when you add or subtract. Or solve one for a variable and substitute.',
+ ce:{text:'A unit fundraiser sells adult tickets for $12 and child tickets for $8. They sold 20 tickets for $200 total. How many of each?',item:{q:'a + c = 20 and 12a + 8c = 200',type:'fields',fields:[{label:'adult (a)',ans:10},{label:'child (c)',ans:10}],sol:'c = 20 − a. 12a + 8(20 − a) = 200 → 4a + 160 = 200 → a = 10, c = 10. <b>10 and 10</b>.'}},
+ gni:`<p>A solution has to satisfy <b>both</b> equations. On a graph, it’s where the lines cross.</p><div class="rule"><b>Substitution:</b> solve one equation for a variable, plug into the other.<br><b>Elimination:</b> multiply so one variable has opposite coefficients, then add.</div><div class="ex">2x + y = 7<br>x − y = 2<br>Add: 3x = 9 → x = 3, then y = 1</div><p>Parallel lines never cross (no solution). The same line twice means infinitely many solutions.</p>`,
+ dev:'Two unknowns, two facts: mixes, splits, two-rate trips. Any time you’re told two totals, you’re looking at a system.',
+ gen(d){const x=ri(-8,8),y=ri(-8,8);let a1,b1,a2,b2,D;do{a1=d===1?1:nz(-6,6);b1=nz(-6,6);a2=nz(-6,6);b2=nz(-6,6);D=a1*b2-b1*a2;}while(D===0);
+  const c1=a1*x+b1*y,c2=a2*x+b2*y;
+  return {q:`Solve the system:<div class="sys">${eqn([a1,b1],['x','y'],c1)}<br>${eqn([a2,b2],['x','y'],c2)}</div>`,type:'fields',fields:[{label:'x',ans:x},{label:'y',ans:y}],
+   sol:`Using determinants: D = (${N(a1)})(${N(b2)}) − (${N(b1)})(${N(a2)}) = ${N(D)}. x = [(${N(c1)})(${N(b2)}) − (${N(b1)})(${N(c2)})]/D = ${N(x)}. y = [(${N(a1)})(${N(c2)}) − (${N(c1)})(${N(a2)})]/D = ${N(y)}. <b>(${N(x)}, ${N(y)})</b>.`};}},
+{id:'sys3',title:'Three-variable systems',bloom:'Analyze',
+ hint:'Use two different pairs of equations to eliminate the same variable. That leaves a 2×2 system.',
+ ce:{text:'Three kit orders: 1 radio + 2 batteries + 1 antenna = $390. 2 radios + 1 battery + 3 antennas = $770. 1 radio + 4 batteries + 2 antennas = $480. Price each item.',item:{q:'r + 2b + a = 390<br>2r + b + 3a = 770<br>r + 4b + 2a = 480',type:'fields',fields:[{label:'radio r',ans:300},{label:'battery b',ans:20},{label:'antenna a',ans:50}],sol:'Eq3 − Eq1: 2b + a = 90. 2·Eq1 − Eq2: 3b − a = 10. Add: 5b = 100 → b = 20, a = 50, r = 390 − 40 − 50 = 300. <b>$300, $20, $50</b>.'}},
+ gni:`<div class="rule">Pick one variable. Eliminate it from two different pairs of equations. Now you have two equations in two unknowns. Solve, then back-substitute.</div><div class="rule"><b>Cramer’s rule:</b> x = Dₓ/D, where D is the determinant of the coefficients and Dₓ swaps the x column for the constants. (More in the Matrices task.)</div>`,
+ dev:'Three unknowns show up in mixes, cost breakdowns, and position fixes. This is the doorway to how GPS and direction finding solve for location.',
+ gen(){const s=[ri(-5,5),ri(-5,5),ri(-5,5)];let A,D;do{A=[0,1,2].map(()=>[0,1,2].map(()=>ri(-3,3)));D=det3(A);}while(D===0||A.some(r=>r.every(v=>v===0)));
+  const c=A.map(r=>r[0]*s[0]+r[1]*s[1]+r[2]*s[2]),V=['x','y','z'],Dk=[0,1,2].map(j=>det3(A.map((r,i)=>r.map((v,k)=>k===j?c[i]:v))));
+  return {q:`Solve:<div class="sys">${A.map((r,i)=>eqn(r,V,c[i])).join('<br>')}</div>`,type:'fields',fields:V.map((v,i)=>({label:v,ans:s[i]})),
+   sol:`D = ${N(D)}. Dₓ = ${N(Dk[0])}, D<sub>y</sub> = ${N(Dk[1])}, D<sub>z</sub> = ${N(Dk[2])}. Divide each by D: <b>(${s.map(N).join(', ')})</b>.`};}}
+]},
+{name:'Exponents and radicals',lessons:[
+{id:'exp',title:'Exponent rules',bloom:'Apply',
+ hint:'Multiply: add exponents. Divide: subtract. Power of a power: multiply. Coefficients follow normal arithmetic.',
+ ce:{text:'2¹⁰ bytes is 1 KiB, and 2¹⁰ KiB is 1 MiB. How many bytes in a MiB, as a power of 2?',item:{q:'2¹⁰ × 2¹⁰ = 2^?',type:'num',ans:20,sol:'Same base, multiply means add exponents: 10 + 10 = <b>20</b>. So 1 MiB = 2²⁰ bytes.'}},
+ gni:`<div class="rule">xᵃ · xᵇ = xᵃ⁺ᵇ &nbsp;&nbsp; xᵃ / xᵇ = xᵃ⁻ᵇ &nbsp;&nbsp; (xᵃ)ᵇ = xᵃᵇ<br>(xy)ⁿ = xⁿyⁿ &nbsp;&nbsp; x⁰ = 1 &nbsp;&nbsp; x⁻ⁿ = 1/xⁿ</div><div class="ex">(2x³)² · x⁻⁴<br>= 4x⁶ · x⁻⁴<br>= 4x²</div>`,
+ dev:'Powers of 2 run every bit of IT, and powers of 10 run every unit prefix (kilo, mega, giga). Exponent rules are how you convert between them in your head.',
+ gen(d){const a=ri(2,7),b=ri(1,6),p=ri(1,5),q=ri(1,5),f=pick(d===1?['prod','quot']:d===2?['prod','quot','pow']:['quot','pow','neg']),X=(c,e)=>`${c===1?'':c}x${sup(e)}`;
+  if(f==='prod')return {q:`Simplify (${X(p,a)})(${X(q,b)}) into k·xⁿ.`,type:'fields',fields:[{label:'k',ans:p*q},{label:'n',ans:a+b}],sol:`Multiply coefficients: ${p*q}. Add exponents: ${a} + ${b} = ${a+b}. <b>${X(p*q,a+b)}</b>.`};
+  if(f==='quot'){const b2=d===1?ri(1,a-1):ri(1,9);return {q:`Simplify ${X(p*q,a)} ÷ ${X(q,b2)} into k·xⁿ. (n can be zero or negative.)`,type:'fields',fields:[{label:'k',ans:p},{label:'n',ans:a-b2}],sol:`Divide coefficients: ${p*q} ÷ ${q} = ${p}. Subtract exponents: ${a} − ${b2} = ${N(a-b2)}. <b>${p}x${sup(a-b2)}</b>.`};}
+  if(f==='pow'){const pp=ri(1,3),n=ri(2,3);return {q:`Simplify (${X(pp,a)})${sup(n)} into k·xⁿ.`,type:'fields',fields:[{label:'k',ans:pp**n},{label:'n',ans:a*n}],sol:`${pp>1?`${pp}${sup(n)} = ${pp**n}. `:''}Multiply exponents: ${a}·${n} = ${a*n}. <b>${X(pp**n,a*n)}</b>.`};}
+  return {q:`Simplify ${X(p,a)} · x${sup(-b)} · x${sup(-a)} into k·xⁿ.`,type:'fields',fields:[{label:'k',ans:p},{label:'n',ans:-b}],sol:`Add exponents: ${a} + (${M}${b}) + (${M}${a}) = ${N(-b)}. <b>${X(p,-b)}</b>, which is ${p}/x${b>1?sup(b):''}.`};}},
+{id:'rad',title:'Simplifying radicals',bloom:'Apply',
+ hint:'Find the biggest perfect square factor (4, 9, 16, 25, 36…) and pull its root outside.',
+ ce:{text:'A square tent floor is 6 m by 6 m. Its diagonal is √72 m. Write √72 as a√b.',item:{q:'√72 = a√b',type:'fields',fields:[{label:'a',ans:6},{label:'b',ans:2}],sol:'72 = 36 · 2, and √36 = 6. <b>6√2</b> ≈ 8.49 m.'}},
+ gni:`<div class="rule">√(ab) = √a · √b. Pull out perfect squares. Combine like radicals like like terms: 3√2 + 5√2 = 8√2.</div><div class="ex">√50 = √25 · √2 = 5√2<br>√12 + √27 = 2√3 + 3√3 = 5√3</div><div class="rule"><b>Rationalize:</b> 1/√2 = √2/2 (multiply top and bottom by √2).</div>`,
+ dev:'Diagonals, distances, and RMS values come out as radicals. The simplified form shows you the structure, like a 45° diagonal always being side × √2.',
+ gen(d){const B=[2,3,5,6,7,10,11];
+  if(d===1||Math.random()<.35){const a=ri(2,9),b=pick(B);return {q:`Simplify √${a*a*b} into a√b.`,type:'fields',fields:[{label:'a',ans:a},{label:'b',ans:b}],sol:`${a*a*b} = ${a*a} · ${b}, and √${a*a} = ${a}. <b>${a}√${b}</b>.`};}
+  let b,s,t,p,q;do{b=pick([2,3,5,6,7]);s=ri(1,5);t=ri(1,5);p=nz(-4,4);q=nz(-4,4);}while(p*s+q*t===0||s===t);
+  const r1=s*s*b,r2=t*t*b,A=p*s+q*t;
+  return {q:`Simplify ${cstr(p)}√${r1} ${q<0?M:'+'} ${Math.abs(q)===1?'':Math.abs(q)}√${r2} into a√b.`,type:'fields',fields:[{label:'a',ans:A},{label:'b',ans:b}],sol:`√${r1} = ${s===1?'':s}√${b} and √${r2} = ${t===1?'':t}√${b}. Combine: (${N(p*s)}${sg(q*t)})√${b} = <b>${N(A)}√${b}</b>.`};}},
+{id:'ratexp',title:'Rational exponents and roots',bloom:'Apply',
+ hint:'x^(m/n): take the nth root first, then raise to the m. A negative exponent means take the reciprocal.',
+ ce:{text:'A cube-shaped storage crate holds 27 ft³. How long is each side? Side = 27^(1/3).',item:{q:'27<sup>1/3</sup> = ?',type:'num',ans:3,sol:'Cube root of 27 is <b>3 ft</b>, since 3 × 3 × 3 = 27.'}},
+ gni:`<div class="rule">x<sup>1/n</sup> = ⁿ√x &nbsp;&nbsp; x<sup>m/n</sup> = (ⁿ√x)<sup>m</sup> &nbsp;&nbsp; x<sup>−m/n</sup> = 1/x<sup>m/n</sup></div><div class="ex">16<sup>3/4</sup> = (⁴√16)³ = 2³ = 8<br>8<sup>−2/3</sup> = 1/(∛8)² = 1/4</div><p>Root first keeps the numbers small.</p>`,
+ dev:'Rational exponents show up in scaling laws: area vs. volume, power vs. range, and the inverse-square law for signal and radiation.',
+ gen(d){const n=pick(d===1?[2,3]:[2,3,4]),r=n===4?ri(2,3):ri(2,5);let m=ri(1,3);if(m%n===0)m=1;const neg=d===3&&Math.random()<.5,base=r**n,v=neg?1/r**m:r**m;
+  return {q:`Evaluate ${base}<sup>${neg?M:''}${m}/${n}</sup>`,type:'num',ans:v,sol:`${n===2?'Square':n===3?'Cube':'4th'} root of ${base} is ${r}. ${r}${sup(m)} = ${r**m}.${neg?` Negative exponent: reciprocal → <b>1/${r**m}</b>.`:` <b>${r**m}</b>.`}`};}}
+]},
+{name:'Polynomials and factoring',lessons:[
+{id:'polyops',title:'Polynomial operations',bloom:'Apply',
+ hint:'Subtracting: distribute the minus to every term. Multiplying: every term times every term, then combine.',
+ ce:{text:'A square ground plane has sides of (x + 3) cm. Write its area (x + 3)² as ax² + bx + c.',item:{q:'(x + 3)² = ax² + bx + c',type:'fields',fields:[{label:'a',ans:1},{label:'b',ans:6},{label:'c',ans:9}],sol:'(x + 3)(x + 3) = x² + 3x + 3x + 9 = <b>x² + 6x + 9</b>. (Not x² + 9.)'}},
+ gni:`<div class="rule"><b>Add/subtract:</b> combine like terms. When subtracting, flip the sign of every term in the second polynomial.</div><div class="rule"><b>Multiply:</b> every term in the first times every term in the second (FOIL for two binomials).</div><div class="ex">(2x − 3)(x + 4)<br>= 2x² + 8x − 3x − 12<br>= 2x² + 5x − 12</div>`,
+ dev:'Area and volume with unknown dimensions, and any model you combine or scale, end up as polynomial arithmetic.',
+ gen(d){if(d===1){const A=[nz(-6,6),nz(-9,9),nz(-9,9)],B=[nz(-6,6),nz(-9,9),nz(-9,9)],s=pick([1,-1]),R=A.map((v,i)=>v+s*B[i]);
+   return {q:`Simplify (${poly(A)}) ${s>0?'+':M} (${poly(B)}) into ax² + bx + c.`,type:'fields',fields:['a','b','c'].map((l,i)=>({label:l,ans:R[i]})),sol:`${s<0?'Flip every sign in the second, then combine':'Combine like terms'}: <b>${poly(R)}</b>.`};}
+  if(d===2){const a=nz(-4,4),b=nz(-9,9),c=nz(-4,4),e=nz(-9,9),R=[a*c,a*e+b*c,b*e];return {q:`Multiply (${poly([a,b])})(${poly([c,e])}) into ax² + bx + c.`,type:'fields',fields:['a','b','c'].map((l,i)=>({label:l,ans:R[i]})),sol:`First ${N(a*c)}x², outer + inner ${N(a*e)}x${sg(b*c)}x, last ${N(b*e)}. <b>${poly(R)}</b>.`};}
+  const a=nz(-3,3),b=nz(-5,5),c=nz(-3,3),e=nz(-5,5),f=nz(-5,5),R=[a*c,a*e+b*c,a*f+b*e,b*f];
+  return {q:`Multiply (${poly([a,b])})(${poly([c,e,f])}) into ax³ + bx² + cx + d.`,type:'fields',fields:['a','b','c','d'].map((l,i)=>({label:l,ans:R[i]})),sol:`Distribute each term of the binomial across the trinomial, then combine: <b>${poly(R)}</b>.`};}},
+{id:'polydiv',title:'Polynomial division and the remainder theorem',bloom:'Apply',
+ hint:'Dividing f(x) by (x − a) leaves remainder f(a). For synthetic division, bring down, multiply by a, add, repeat.',
+ ce:{text:'f(x) = x³ − 2x² + 5. Without long division, find the remainder when f(x) is divided by (x − 2).',item:{q:'Remainder = ?',type:'num',ans:5,sol:'Remainder theorem: f(2) = 8 − 8 + 5 = <b>5</b>.'}},
+ gni:`<div class="rule"><b>Remainder theorem:</b> f(x) ÷ (x − a) leaves remainder f(a).<br><b>Factor theorem:</b> if f(a) = 0, then (x − a) is a factor.</div><div class="ex">Synthetic division of x² + 5x + 7 by (x − 2):<br>bring down 1 → 1·2 + 5 = 7 → 7·2 + 7 = 21<br>quotient x + 7, remainder 21</div>`,
+ dev:'This is how you test candidate roots fast, and the same idea (remainders) is behind CRC error checking on every network frame.',
+ gen(d){if(d===1||Math.random()<.5){const c=[nz(-3,3),ri(-6,6),ri(-6,6),ri(-9,9)],a=nz(-3,3),f=v=>c[0]*v**3+c[1]*v*v+c[2]*v+c[3];
+   return {q:`Find the remainder when f(x) = ${poly(c)} is divided by (${poly([1,-a])}).`,type:'num',ans:f(a),sol:`Remainder theorem: f(${N(a)}) = <b>${N(f(a))}</b>.`};}
+  const r=nz(-6,6),b=ri(-8,8),c=ri(-12,12),s=b+r,rem=c+r*s;
+  return {q:`Divide (${poly([1,b,c])}) by (${poly([1,-r])}). The quotient is x + q with remainder R.`,type:'fields',fields:[{label:'q',ans:s},{label:'R',ans:rem}],sol:`Synthetic with ${N(r)}: bring down 1; 1·${P(r)} + ${P(b)} = ${N(s)}; ${N(s)}·${P(r)} + ${P(c)} = ${N(rem)}. <b>Quotient ${poly([1,s])}, remainder ${N(rem)}</b>.`};}},
+{id:'factor',title:'Factoring trinomials and GCF',bloom:'Analyze',
+ hint:'Pull out the GCF first. For x² + bx + c, find two numbers that multiply to c and add to b.',
+ ce:{text:'A TOC tent covers x² + 7x + 12 square meters. Factor it to find expressions for the length and width.',item:{q:'Factor: x² + 7x + 12',type:'expr',ans:'(x+3)(x+4)',minF:2,sol:'3 × 4 = 12 and 3 + 4 = 7. <b>(x + 3)(x + 4)</b>.'}},
+ gni:`<div class="rule"><b>Step 1:</b> always pull out the greatest common factor.<br><b>x² + bx + c:</b> find two numbers with product c and sum b.<br><b>ax² + bx + c (AC method):</b> find two numbers with product a·c and sum b, split the middle term, group.</div><div class="ex">2x² + 7x + 3<br>a·c = 6 → 6 and 1<br>2x² + 6x + x + 3<br>= 2x(x + 3) + 1(x + 3)<br>= (2x + 1)(x + 3)</div><p>Type it like <code>(2x+1)(x+3)</code>. Check by multiplying back out.</p>`,
+ dev:'Factoring turns a hard question into easy ones: once it’s in pieces, finding zeros, dimensions, or break-even points is immediate.',
+ gen(d){let k=1,a=1,p=nz(-9,9);const q=nz(-9,9);if(d>=2){a=pick([2,3,5]);do{p=nz(-9,9)}while(gcd(a,p)!==1);}if(d===3)k=pick([2,3,4,-2]);
+  const co=[k*a,k*(a*q+p),k*p*q],pr=`${k===1?'':N(k)}(${poly([a,p])})(${poly([1,q])})`;
+  return {q:`Factor completely: ${poly(co)}`,type:'expr',minF:2,ans:`${k===1?'':k}${fac(a,p)}${fac(1,q)}`,sol:`${k!==1?`Pull out GCF ${N(k)}. `:''}${a===1?`Two numbers with product ${N(p*q)} and sum ${N(p+q)}: ${N(p)} and ${N(q)}.`:`AC method: product ${N(a*p*q)}, sum ${N(a*q+p)} → ${N(a*q)} and ${N(p)}. Split and group.`} <b>${pr}</b>.`};}},
+{id:'special',title:'Special factoring patterns',bloom:'Analyze',
+ hint:'a² − b² = (a − b)(a + b). a² ± 2ab + b² = (a ± b)². Cubes: a³ ∓ b³ = (a ∓ b)(a² ± ab + b²).',
+ ce:{text:'x² − 49 has no middle term. That’s a difference of squares. Factor it.',item:{q:'Factor: x² − 49',type:'expr',ans:'(x-7)(x+7)',minF:2,sol:'x² − 7² = <b>(x − 7)(x + 7)</b>.'}},
+ gni:`<div class="rule">a² − b² = (a − b)(a + b)<br>a² + 2ab + b² = (a + b)² &nbsp;&nbsp; a² − 2ab + b² = (a − b)²<br>a³ − b³ = (a − b)(a² + ab + b²)<br>a³ + b³ = (a + b)(a² − ab + b²)</div><div class="ex">9x² − 25 = (3x − 5)(3x + 5)<br>x² − 10x + 25 = (x − 5)²<br>x³ − 8 = (x − 2)(x² + 2x + 4)</div><p>a² + b² doesn’t factor over the real numbers.</p>`,
+ dev:'Recognizing patterns on sight is the payoff. It’s the algebra version of knowing your immediate action drills cold.',
+ gen(d){const f=pick(d===1?['dos','ps']:d===2?['dos','ps']:['dos','ps','cube']);
+  if(f==='dos'){let a,b;do{a=ri(1,4);b=ri(1,9)}while(gcd(a,b)!==1);return {q:`Factor: ${poly([a*a,0,-b*b])}`,type:'expr',minF:2,ans:`${fac(a,-b)}${fac(a,b)}`,sol:`(${a===1?'':a}x)² − ${b}² → <b>(${poly([a,-b])})(${poly([a,b])})</b>.`};}
+  if(f==='ps'){const b=ri(1,9),s=pick([1,-1]);return {q:`Factor: ${poly([1,2*s*b,b*b])}`,type:'expr',minF:2,ans:`${fac(1,s*b)}^2`,sol:`${b*b} = ${b}² and ${2*b} = 2·${b}. Perfect square: <b>(${poly([1,s*b])})²</b>.`};}
+  const b=ri(1,5),s=pick([1,-1]);return {q:`Factor: ${poly([1,0,0,s*b**3])}`,type:'expr',minF:2,ans:`${fac(1,s*b)}(x^2${s<0?'+':'-'}${b}x+${b*b})`,sol:`${s<0?'Difference':'Sum'} of cubes with b = ${b}: <b>(${poly([1,s*b])})(${poly([1,-s*b,b*b])})</b>.`};}}
+]},
+{name:'Quadratics and complex numbers',lessons:[
+{id:'quad',title:'Solving quadratic equations',bloom:'Apply',
+ hint:'Set it equal to zero. Factor if you can; otherwise x = (−b ± √(b² − 4ac)) / 2a.',
+ ce:{text:'A round’s height is modeled by h = −5t² + 20t (meters, seconds). When is it on the ground (h = 0)? Give both times.',item:{q:'Solve: −5t² + 20t = 0',type:'set',ans:[0,4],sol:'Factor: −5t(t − 4) = 0, so t = 0 (launch) or t = 4 (impact). <b>0, 4</b>.'}},
+ gni:`<div class="rule"><b>Zero product:</b> if AB = 0, then A = 0 or B = 0. So factor and set each piece to zero.</div><div class="rule"><b>Quadratic formula</b> (always works): x = (−b ± √(b² − 4ac)) / 2a</div><div class="ex">x² − x − 6 = 0<br>(x − 3)(x + 2) = 0<br>x = 3 or x = −2</div><p>Separate answers with commas. Decimals to 2 places are fine. So are exact forms like <code>(-3+sqrt(5))/2</code>.</p>`,
+ dev:'Projectiles, areas, and anything that accelerates are quadratic. If you’ve ever computed time of flight, you’ve used this.',
+ gen(d){if(d<3){const r1=ri(-9,9),r2=ri(-9,9),a=d===1?1:nz(-3,3),co=[a,-a*(r1+r2),a*r1*r2];
+   return {q:`Solve: ${poly(co)} = 0`,type:'set',ans:[r1,r2],sol:`Factor: ${cstr(a)}(${poly([1,-r1])})(${poly([1,-r2])}) = 0. <b>x = ${r1===r2?N(r1)+' (double root)':N(r1)+', '+N(r2)}</b>.`};}
+  let B,C,D;do{B=nz(-9,9);C=ri(-9,9);D=B*B-4*C;}while(D<=0||Number.isInteger(Math.sqrt(D)));const x1=(-B+Math.sqrt(D))/2,x2=(-B-Math.sqrt(D))/2;
+  return {q:`Solve: ${poly([1,B,C])} = 0 &nbsp;<span class="dim">(2 decimal places)</span>`,type:'set',ans:[x1,x2],tol:.011,sol:`It doesn’t factor nicely. x = (${N(-B)} ± √${D})/2 ≈ <b>${r2(x1).replace('-',M)}, ${r2(x2).replace('-',M)}</b>.`};}},
+{id:'disc',title:'The discriminant',bloom:'Analyze',
+ hint:'D = b² − 4ac. Positive: two real roots. Zero: one repeated root. Negative: two complex roots.',
+ ce:{text:'Before solving x² − 6x + 10 = 0, check whether it even has real solutions. Compute b² − 4ac.',item:{q:'b² − 4ac = ?',type:'num',ans:-4,sol:'(−6)² − 4(1)(10) = 36 − 40 = <b>−4</b>. Negative, so there are no real solutions; the roots are complex.'}},
+ gni:`<div class="rule">The <b>discriminant</b> D = b² − 4ac is the part under the root in the quadratic formula.<br>D &gt; 0 → two distinct real roots<br>D = 0 → one repeated real root<br>D &lt; 0 → two complex (non-real) roots</div><div class="ex">2x² + 3x − 5: D = 9 + 40 = 49 → two real roots</div>`,
+ dev:'The discriminant answers “is this even possible?” before you do the work, like checking if a target is in range before computing a firing solution.',
+ gen(d){const f=d===1?'calc':pick(['calc','type']),kind=pick(['pos','zero','neg']);let a,b,c,D;
+  if(kind==='zero'){const r=nz(-6,6);a=pick([1,1,2]);b=-2*a*r;c=a*r*r;}else{do{a=nz(-4,4);b=ri(-9,9);c=ri(-9,9);D=b*b-4*a*c}while(kind==='pos'?D<=0:D>=0);}
+  D=b*b-4*a*c;const s=`D = (${N(b)})² − 4(${N(a)})(${N(c)}) = ${N(D)}`;
+  if(f==='calc')return {q:`Find the discriminant of ${poly([a,b,c])} = 0.`,type:'num',ans:D,sol:`<b>${s}</b>.`};
+  const opts=['Two distinct real roots','One repeated real root','Two complex (non-real) roots'],i=D>0?0:D===0?1:2;
+  return {q:`What kind of roots does ${poly([a,b,c])} = 0 have?`,type:'choice',options:opts,ans:i,sol:`${s}, so <b>${opts[i].toLowerCase()}</b>.`};}},
+{id:'vertex',title:'Vertex form and graphing parabolas',bloom:'Analyze',
+ hint:'h = −b/(2a), then k = f(h). In vertex form y = a(x − h)² + k, the vertex is (h, k).',
+ ce:{text:'Drag h and k until the bottom of the parabola sits at (3, −2), with a = 1.',graph:{exprs:['a*(x-h)^2+k'],params:{a:1,h:0,k:0}},item:{q:'With the vertex at (3, −2) and a = 1, what is y when x = 5?',type:'num',ans:2,sol:'y = (5 − 3)² − 2 = 4 − 2 = <b>2</b>. Notice h moved the graph right, even though it’s written x − h.'}},
+ gni:`<div class="rule"><b>Vertex form:</b> y = a(x − h)² + k. Vertex (h, k), axis of symmetry x = h. a &gt; 0 opens up (minimum), a &lt; 0 opens down (maximum). |a| &gt; 1 is narrower.</div><div class="rule">From standard form y = ax² + bx + c: <b>h = −b/(2a)</b>, then k = y at x = h.</div><div class="ex">y = x² − 6x + 5<br>h = 6/2 = 3, k = 9 − 18 + 5 = −4<br>vertex (3, −4), so y = (x − 3)² − 4</div>`,
+ dev:'The vertex is the max or min: peak height of a trajectory, best price point, lowest cost. Optimization starts here.',
+ gen(d){const a=d===1?1:nz(-3,3),h=nz(-6,6),k=ri(-9,9),B=-2*a*h,C=a*h*h+k;
+  return {q:`Find the vertex of y = ${poly([a,B,C])}.`,type:'fields',fields:[{label:'h (x of vertex)',ans:h},{label:'k (y of vertex)',ans:k}],sol:`h = −b/(2a) = ${N(-B)}/${N(2*a)} = ${N(h)}. k = y(${N(h)}) = ${N(k)}. <b>Vertex (${N(h)}, ${N(k)})</b>, a ${a>0?'minimum':'maximum'}.`};}},
+{id:'cplx',title:'Complex numbers',bloom:'Apply',
+ hint:'Treat i like a variable, then replace i² with −1. To divide, multiply top and bottom by the conjugate.',
+ ce:{text:'In AC circuits, impedance is a complex number. A load of 3 + 4i Ω is in series with 2 − i Ω. Series impedances add. What’s the total?',item:{q:'(3 + 4i) + (2 − i) = ? + ?i',type:'fields',fields:[{label:'Real part',ans:5},{label:'Imaginary part',ans:3}],sol:'Add real parts and imaginary parts separately: <b>5 + 3i Ω</b>.'}},
+ gni:`<div class="rule">i = √−1, so i² = −1. A complex number is a + bi.<br>Powers cycle every 4: i, −1, −i, 1.</div><div class="ex">(2 + 3i)(1 − 4i)<br>= 2 − 8i + 3i − 12i²<br>= 2 − 5i + 12 = 14 − 5i</div><div class="rule"><b>Divide:</b> multiply by the conjugate of the bottom (c + di → c − di). The bottom becomes c² + d².</div>`,
+ dev:'Engineers call it j, but it’s the same thing. Complex numbers describe phase and amplitude, which is how AC circuits, I/Q signals, and SDRs work.',
+ gen(d){const f=pick(d===1?['add','pow']:d===2?['add','mul','pow']:['mul','div','pow']),C=(a,b)=>{if(b===0)return N(a);const bi=(Math.abs(b)===1?'':Math.abs(b))+'i';if(a===0)return (b<0?M:'')+bi;return `${N(a)} ${b<0?M:'+'} ${bi}`;},F=(r,i)=>[{label:'Real part',ans:r},{label:'Imaginary part',ans:i}];
+  const a=nz(-7,7),b=nz(-7,7),c=nz(-7,7),e=nz(-7,7);
+  if(f==='add'){const s=pick([1,-1]);return {q:`Compute (${C(a,b)}) ${s>0?'+':M} (${C(c,e)}).`,type:'fields',fields:F(a+s*c,b+s*e),sol:`Real: ${N(a)} ${s>0?'+':M} ${P(c)} = ${N(a+s*c)}. Imaginary: ${N(b)} ${s>0?'+':M} ${P(e)} = ${N(b+s*e)}. <b>${C(a+s*c,b+s*e)}</b>.`};}
+  if(f==='mul')return {q:`Compute (${C(a,b)})(${C(c,e)}).`,type:'fields',fields:F(a*c-b*e,a*e+b*c),sol:`FOIL: ${N(a*c)}${sg(a*e)}i${sg(b*c)}i${sg(b*e)}i². With i² = −1: <b>${C(a*c-b*e,a*e+b*c)}</b>.`};
+  if(f==='pow'){const n=ri(5,60),cyc=[[1,0],[0,1],[-1,0],[0,-1]][n%4];return {q:`Compute i${sup(n)}.`,type:'fields',fields:F(cyc[0],cyc[1]),sol:`${n} ÷ 4 leaves remainder ${n%4}, so i${sup(n)} = i${sup(n%4)} = <b>${C(cyc[0],cyc[1])}</b>.`};}
+  const p=nz(-5,5),q=nz(-5,5),cc=nz(-4,4),dd=nz(-4,4),nr=p*cc-q*dd,ni=p*dd+q*cc;
+  return {q:`Compute (${C(nr,ni)}) ÷ (${C(cc,dd)}).`,type:'fields',fields:F(p,q),sol:`Multiply top and bottom by the conjugate ${C(cc,-dd)}. Bottom: ${cc*cc} + ${dd*dd} = ${cc*cc+dd*dd}. Result: <b>${C(p,q)}</b>.`};}}
+]},
+{name:'Rational and radical equations',lessons:[
+{id:'ratx',title:'Rational expressions',bloom:'Apply',
+ hint:'Factor top and bottom, cancel common factors (not terms), and note what makes the original denominator zero.',
+ ce:{text:'Simplify (x² − 9)/(x − 3). The result looks like x + c. Also, which x-value is excluded?',item:{q:'(x² − 9)/(x − 3)',type:'fields',fields:[{label:'c in x + c',ans:3},{label:'excluded x',ans:3}],sol:'(x − 3)(x + 3)/(x − 3) = <b>x + 3</b>, with <b>x ≠ 3</b> because the original denominator would be zero.'}},
+ gni:`<div class="rule">Factor, then cancel <b>factors</b>, never terms. (x + 2)/2 is not x + 1.</div><div class="rule"><b>Excluded values</b> come from the original denominator, even after canceling.</div><div class="ex">(x² + 5x + 6)/(x + 2)<br>= (x + 2)(x + 3)/(x + 2)<br>= x + 3, x ≠ −2</div><p>Adding rational expressions works like fractions: get a common denominator first.</p>`,
+ dev:'Rates combined with rates (per-unit costs, combined resistances, shared work) produce rational expressions. Simplifying keeps them manageable.',
+ gen(d){const p=nz(-9,9),q=ri(-9,9),k=d===3?pick([2,3,-2]):1,num=[k,k*(p+q),k*p*q];
+  return {q:`Simplify (${poly(num)}) / (${poly([1,p])}) into mx + c, and give the excluded value.`,type:'fields',fields:[{label:'m',ans:k},{label:'c',ans:k*q},{label:'excluded x',ans:-p}],sol:`Factor the top: ${k===1?'':N(k)}(${poly([1,p])})(${poly([1,q])}). Cancel (${poly([1,p])}): <b>${poly([k,k*q])}</b>, with <b>x ≠ ${N(-p)}</b>.`};}},
+{id:'radeq',title:'Rational and radical equations',bloom:'Apply',
+ hint:'Radicals: isolate, then square both sides. Rationals: multiply by the denominator. Always check for extraneous answers.',
+ ce:{text:'Crew A can do a job in 6 hours. Crew B can do it in 3 hours. Working together, how long does it take? Rates add: 1/6 + 1/3 = 1/t.',item:{q:'t = ? hours',type:'num',ans:2,sol:'1/6 + 2/6 = 3/6 = 1/2, so 1/t = 1/2 and <b>t = 2 hours</b>.'}},
+ gni:`<div class="rule"><b>Rational:</b> multiply both sides by the LCD, solve, then reject any answer that makes a denominator zero.</div><div class="rule"><b>Radical:</b> isolate the root, raise both sides to the power, solve, then <b>check</b>. Squaring can create fake (extraneous) solutions.</div><div class="ex">√(2x + 3) = x<br>2x + 3 = x²<br>x² − 2x − 3 = 0 → x = 3 or −1<br>Check −1: √1 = 1 ≠ −1 ✗ → x = 3</div>`,
+ dev:'Combined work rates, parallel resistors, and distance formulas all lead here. The check step is your quality control.',
+ gen(d){const f=pick(d===1?['rad']:d===2?['rad','rat']:['rad','rat','work']);
+  if(f==='rad'){const x=ri(-5,12),a=pick([1,2,3,4,5]),c=ri(1,9),b=c*c-a*x;return {q:`Solve: √(${poly([a,b])}) = ${c}`,type:'num',ans:x,sol:`Square both sides: ${poly([a,b])} = ${c*c}. Solve: <b>x = ${N(x)}</b>. Check: √${c*c} = ${c} ✓.`};}
+  if(f==='rat'){const k=nz(-5,5),j=nz(-6,6),h=nz(-8,8),m=k*j,x=h+j;return {q:`Solve: ${N(m)}/(${poly([1,-h])}) = ${N(k)}`,type:'num',ans:x,sol:`Multiply by (${poly([1,-h])}): ${N(m)} = ${N(k)}(${poly([1,-h])}). So ${poly([1,-h])} = ${N(j)}, <b>x = ${N(x)}</b> (not ${N(h)}, so it’s allowed).`};}
+  const [A,B,t]=pick([[3,6,2],[4,12,3],[6,12,4],[10,15,6],[12,24,8],[5,20,4],[20,30,12],[12,12,6]]);
+  return {q:`Crew A finishes a job in ${A} h. Crew B takes ${B} h. Together, how many hours?`,type:'num',ans:t,sol:`1/${A} + 1/${B} = (${B} + ${A})/${A*B} = 1/t → t = ${A*B}/${A+B} = <b>${t} h</b>.`};}}
+]},
+{name:'Functions II',lessons:[
+{id:'comp',title:'Composition and inverse functions',bloom:'Apply',
+ hint:'f(g(x)): work inside out. Inverse: swap x and y, solve for y.',
+ ce:{text:'f(c) = 1.8c + 32 converts Celsius to Fahrenheit. Water boils at 212 °F. Use the inverse to get Celsius.',item:{q:'f⁻¹(212) = ?',type:'num',ans:100,sol:'Solve 1.8c + 32 = 212 → 1.8c = 180 → <b>c = 100 °C</b>.'}},
+ gni:`<div class="rule"><b>Composition:</b> (f ∘ g)(x) = f(g(x)). Evaluate the inside function first.</div><div class="rule"><b>Inverse:</b> f⁻¹ undoes f. Swap x and y, then solve for y. Only one-to-one functions have inverses (horizontal line test).</div><div class="ex">f(x) = 3x − 6<br>x = 3y − 6<br>y = (x + 6)/3 → f⁻¹(x) = (x + 6)/3</div>`,
+ dev:'Unit conversions chain together (composition) and run backward (inverse). Converting dBm to watts and back is exactly this.',
+ gen(d){const f=pick(d===1?['comp']:d===2?['comp','invv']:['comp','invv','inve']),a=nz(-5,5),b=nz(-9,9);
+  if(f==='comp'){const c=nz(-3,3),e=ri(-6,6),k=ri(-4,4),g=c*k*k+e,v=a*g+b;return {q:`f(x) = ${poly([a,b])} and g(x) = ${poly([c,0,e])}. Find f(g(${N(k)})).`,type:'num',ans:v,sol:`Inside first: g(${N(k)}) = ${N(g)}. Then f(${N(g)}) = <b>${N(v)}</b>.`};}
+  if(f==='invv'){const m=ri(-8,8),v=a*m+b;return {q:`f(x) = ${poly([a,b])}. Find f⁻¹(${N(v)}).`,type:'num',ans:m,sol:`f⁻¹(${N(v)}) is the x where f(x) = ${N(v)}: ${poly([a,b])} = ${N(v)} → <b>x = ${N(m)}</b>.`};}
+  return {q:`f(x) = ${poly([a,b])}. Write f⁻¹(x).`,type:'expr',ans:`(x-(${b}))/(${a})`,sol:`Swap: x = ${poly([a,b],'y')}. Solve: <b>f⁻¹(x) = (${poly([1,-b])})/${P(a)}</b>.`};}},
+{id:'trans',title:'Function transformations',bloom:'Analyze',
+ hint:'Inside the function (x − h) moves right h. Outside + k moves up k. A negative multiplier reflects over the x-axis.',
+ ce:{text:'The first curve is the parent y = x². The second is y = (x − h)² + k. Set h = 4 and k = 0 and watch the second curve.',graph:{exprs:['x^2','(x-h)^2+k'],params:{h:0,k:0}},item:(()=>{const c=mc(['Right 4','Left 4','Up 4','Down 4'],0);return {q:'Compared to the parent, the second curve moved:',type:'choice',options:c.options,ans:c.ans,sol:'(x − 4) inside the function moves it <b>right 4</b>. It feels backwards: the input has to be 4 bigger to get the same output.'};})()},
+ gni:`<div class="rule">f(x − h): right h &nbsp;&nbsp; f(x + h): left h<br>f(x) + k: up k &nbsp;&nbsp; f(x) − k: down k<br>−f(x): reflect over the x-axis &nbsp;&nbsp; f(−x): reflect over the y-axis<br>a·f(x): vertical stretch (|a| &gt; 1) or compress (|a| &lt; 1)</div><div class="ex">g(x) = −2(x + 1)² + 3<br>left 1, reflect, stretch ×2, up 3</div>`,
+ dev:'Once you know a parent shape, every variant is a shift or stretch. This is reading a graph the way you’d read terrain: by its features, not point by point.',
+ gen(d){const PR=[['x²',s=>`(${s})²`],['|x|',s=>`|${s}|`],['√x',s=>`√(${s})`],['x³',s=>`(${s})³`]],[pf,g]=pick(PR),h=nz(-6,6),k=nz(-6,6),a=d===3?pick([-1,2,-2,3,-3]):1;
+  const fl=[{label:'horizontal shift (right +, left −)',ans:h},{label:'vertical shift (up +, down −)',ans:k}];if(d===3)fl.push({label:'stretch factor a (negative = reflected)',ans:a});
+  return {q:`f(x) = ${pf}. g(x) = ${cstr(a)}${g(poly([1,-h]))}${sg(k)}. Describe g as a transformation of f.`,type:'fields',fields:fl,
+   sol:`Inside (${poly([1,-h])}) → <b>${h>0?'right':'left'} ${Math.abs(h)}</b>. Outside ${sg(k).trim()} → <b>${k>0?'up':'down'} ${Math.abs(k)}</b>.${a!==1?` Factor ${N(a)} → ${a<0?'reflect over the x-axis':''}${a<0&&Math.abs(a)>1?' and ':''}${Math.abs(a)>1?'stretch ×'+Math.abs(a):''}.`:''}`};}}
+]},
+{name:'Exponential and logarithmic functions',lessons:[
+{id:'expg',title:'Exponential growth and decay',bloom:'Apply',
+ hint:'y = a·bᵗ. Growth by r%: b = 1 + r. Decay by r%: b = 1 − r. Compound: A = P(1 + r/n)^(nt).',
+ ce:{text:'A cable run loses 20% of its signal power per 100 m section. You start with 50 W. What’s left after 3 sections?',item:{q:'P = 50(0.8)³ = ? W',type:'num',ans:25.6,tol:.011,sol:'Each section keeps 80%: 50 × 0.8 × 0.8 × 0.8 = <b>25.6 W</b>. Not 50 − 3(10) = 20.'}},
+ gni:`<div class="rule"><b>Exponential:</b> y = a·bᵗ. a is the start, b is the factor per period. b &gt; 1 grows, 0 &lt; b &lt; 1 decays.</div><div class="rule">Compound interest: A = P(1 + r/n)<sup>nt</sup> &nbsp;&nbsp; Continuous: A = Pe<sup>rt</sup><br>Half-life: A = A₀(½)<sup>t/h</sup></div><div class="ex">$2,000 at 5% compounded monthly for 3 years<br>= 2000(1 + 0.05/12)³⁶ ≈ $2,322.94</div><p>Round to the nearest hundredth.</p>`,
+ dev:'TSP growth, battery drain, signal loss per segment, and radioactive decay are all exponential. Percent-per-period never adds; it multiplies.',
+ gen(d){const f=pick(d===1?['pct','half']:d===2?['pct','half','comp']:['pct','comp','cont','half']);
+  if(f==='pct'){const P0=ri(10,99)*10,r=ri(2,25),g=pick([1,-1]),t=ri(2,8),b=1+g*r/100,v=P0*b**t;return {q:`Something starts at ${P0} and ${g>0?'grows':'decays'} ${r}% per period. Value after ${t} periods?`,type:'num',ans:v,tol:.011,sol:`${P0} × ${b}${sup(t)} ≈ <b>${r2(v)}</b>.`};}
+  if(f==='half'){const A0=pick([64,80,96,128,160,200,256,320,400,512,640,800,1000,1024]),h=ri(2,12),n=ri(1,4),v=A0/2**n;return {q:`You have ${A0} mg of a substance with a half-life of ${h} hours. How much is left after ${h*n} hours?`,type:'num',ans:v,tol:.011,sol:`${h*n}/${h} = ${n} half-lives. ${A0} × (½)${sup(n)} = <b>${v}</b> mg.`};}
+  if(f==='comp'){const P0=ri(10,100)*100,r=pick([2,3,4,5,6,7,8]),n=pick([1,2,4,12]),t=ri(2,10),v=P0*(1+r/100/n)**(n*t);return {q:`$${P0} at ${r}% compounded ${({1:'yearly',2:'twice a year',4:'quarterly',12:'monthly'})[n]} for ${t} years. Final balance?`,type:'num',ans:v,tol:.011,sol:`${P0}(1 + ${r/100}/${n})<sup>${n*t}</sup> ≈ <b>$${r2(v)}</b>.`};}
+  const P0=ri(10,100)*100,r=pick([2,3,4,5,6]),t=ri(2,15),v=P0*Math.exp(r/100*t);return {q:`$${P0} at ${r}% compounded continuously for ${t} years. Final balance?`,type:'num',ans:v,tol:.011,sol:`${P0}·e<sup>${r/100}·${t}</sup> ≈ <b>$${r2(v)}</b>.`};}},
+{id:'logs',title:'Logarithms and decibels',bloom:'Apply',
+ hint:'log_b(x) = y means bʸ = x. To solve bˣ = c, x = ln c / ln b. dB = 10·log(P₂/P₁).',
+ ce:{text:'An amplifier takes a 2 W signal to 200 W. Gain in decibels is 10·log(P₂/P₁). What’s the gain?',item:{q:'10·log(200/2) = ? dB',type:'num',ans:20,sol:'200/2 = 100, and log(100) = 2. 10 × 2 = <b>20 dB</b>.'}},
+ gni:`<div class="rule">log<sub>b</sub>(x) = y ⇔ b<sup>y</sup> = x. A log is an exponent. log = base 10, ln = base e.</div><div class="rule">log(MN) = log M + log N &nbsp;&nbsp; log(M/N) = log M − log N &nbsp;&nbsp; log(Mᵏ) = k·log M<br>Change of base: log<sub>b</sub>x = ln x / ln b</div><div class="ex">log₂ 64 = 6 since 2⁶ = 64<br>5ˣ = 20 → x = ln 20 / ln 5 ≈ 1.86</div><p>You can type <code>log(20)/log(5)</code> as an answer.</p>`,
+ dev:'Decibels are logarithms. Every link budget, every “3 dB is double power,” every dBm conversion you do in EW and signal is this lesson.',
+ gen(d){const f=pick(d===1?['eval','sexp']:d===2?['eval','sexp','slog','db']:['eval','slog','db','cob']);
+  if(f==='eval'){const b=pick([2,3,4,5,10]),n=d===1?ri(1,4):ri(-3,4),v=n>=0?String(b**n):`1/${b**-n}`;return {q:`Evaluate log<sub>${b}</sub>(${v}).`,type:'num',ans:n,sol:`${b}${sup(n)} = ${v}, so the log is <b>${N(n)}</b>.`};}
+  if(f==='sexp'){const b=pick([2,3,5]),n=ri(1,6);return {q:`Solve: ${b}<sup>x</sup> = ${b**n}`,type:'num',ans:n,sol:`${b**n} = ${b}${sup(n)}, so <b>x = ${n}</b>.`};}
+  if(f==='slog'){const b=pick([2,3,4,5,10]),n=ri(1,4);return {q:`Solve: log<sub>${b}</sub>(x) = ${n}`,type:'num',ans:b**n,sol:`Rewrite: x = ${b}${sup(n)} = <b>${b**n}</b>.`};}
+  if(f==='db'){const p1=pick([0.5,1,2,5]),e=ri(1,4),up=Math.random()<.6,a=up?p1:p1*10**e,b=up?p1*10**e:p1,v=10*Math.log10(b/a);return {q:`A signal goes from ${a} W to ${b} W. Gain in dB = 10·log(P₂/P₁)? (A loss is negative.)`,type:'num',ans:v,tol:.011,sol:`P₂/P₁ = ${up?10**e:'1/'+10**e}. 10·log of that = <b>${N(Math.round(v))} dB</b>.`};}
+  const b=pick([2,3,5,7]);let c;do{c=ri(3,90)}while(Number.isInteger(Math.log(c)/Math.log(b)+1e-12)||Math.abs(Math.round(Math.log(c)/Math.log(b))-Math.log(c)/Math.log(b))<1e-9);const v=Math.log(c)/Math.log(b);
+  return {q:`Solve ${b}<sup>x</sup> = ${c}. (2 decimal places)`,type:'num',ans:v,tol:.011,sol:`x = ln ${c} / ln ${b} ≈ <b>${r2(v)}</b>.`};}}
+]},
+{name:'Advanced topics',lessons:[
+{id:'seq',title:'Sequences and series',bloom:'Apply',
+ hint:'Arithmetic: aₙ = a₁ + (n − 1)d. Geometric: aₙ = a₁·rⁿ⁻¹. Infinite geometric sum: a₁/(1 − r) when |r| < 1.',
+ ce:{text:'You fire 40 rounds in week 1 of a train-up and add 15 more each week. How many rounds in week 10?',item:{q:'a₁₀ = ?',type:'num',ans:175,sol:'a₁₀ = 40 + 9 × 15 = <b>175</b>. Week 10 is only 9 steps past week 1.'}},
+ gni:`<div class="rule"><b>Arithmetic</b> (add d each time): aₙ = a₁ + (n − 1)d &nbsp;&nbsp; Sₙ = n(a₁ + aₙ)/2</div><div class="rule"><b>Geometric</b> (multiply by r): aₙ = a₁·rⁿ⁻¹ &nbsp;&nbsp; Sₙ = a₁(1 − rⁿ)/(1 − r)<br>Infinite, |r| &lt; 1: S = a₁/(1 − r)</div><div class="ex">3, 6, 12, 24, … → a₈ = 3·2⁷ = 384</div>`,
+ dev:'Training plans that ramp up, payment schedules, and repeated losses (each hop loses half) are sequences. The sum formula saves you adding them by hand.',
+ gen(d){const f=pick(d===1?['an','gn']:d===2?['an','as','gn','gs']:['as','gn','gs','inf']),tl=(a,fn)=>[0,1,2,3].map(i=>N(fn(i))).join(', ');
+  if(f==='an'||f==='as'){const a1=ri(-10,20),dd=nz(-7,9),n=f==='an'?ri(8,40):ri(10,30),an=a1+(n-1)*dd;
+   if(f==='an')return {q:`Arithmetic: ${tl(a1,i=>a1+i*dd)}, … Find term ${n}.`,type:'num',ans:an,sol:`d = ${N(dd)}. a${n} = ${N(a1)} + ${n-1}·${P(dd)} = <b>${N(an)}</b>.`};
+   const S=n*(a1+an)/2;return {q:`Arithmetic: ${tl(a1,i=>a1+i*dd)}, … Find the sum of the first ${n} terms.`,type:'num',ans:S,sol:`a${n} = ${N(an)}. S = ${n}(${N(a1)} + ${P(an)})/2 = <b>${N(S)}</b>.`};}
+  if(f==='gn'||f==='gs'){const a1=nz(-5,5),r=pick([2,3,-2]),n=ri(4,8);
+   if(f==='gn')return {q:`Geometric: ${tl(a1,i=>a1*r**i)}, … Find term ${n}.`,type:'num',ans:a1*r**(n-1),sol:`r = ${N(r)}. a${n} = ${N(a1)}·${P(r)}${sup(n-1)} = <b>${N(a1*r**(n-1))}</b>.`};
+   const S=a1*(1-r**n)/(1-r);return {q:`Geometric: ${tl(a1,i=>a1*r**i)}, … Find the sum of the first ${n} terms.`,type:'num',ans:S,sol:`S = ${N(a1)}(1 − ${P(r)}${sup(n)})/(1 − ${P(r)}) = <b>${N(S)}</b>.`};}
+  const a1=ri(2,30),[p,q]=pick([[1,2],[1,3],[1,4],[-1,2],[2,3],[3,4]]),S=a1*q/(q-p);
+  return {q:`Infinite geometric series with a₁ = ${a1} and r = ${frac(p,q)}. Find the sum.`,type:'num',ans:S,tol:.001,sol:`|r| &lt; 1, so S = ${a1}/(1 − ${p<0?'('+frac(p,q)+')':frac(p,q)}) = ${a1}/${frac(q-p,q)} = <b>${frac(a1*q,q-p)}</b>.`};}},
+{id:'mat',title:'Matrices and determinants',bloom:'Apply',
+ hint:'Multiply row of the first by column of the second, add the products. 2×2 determinant = ad − bc.',
+ ce:{text:'A Hill cipher encrypts a pair of letter-numbers by multiplying by a key matrix. Encrypt the pair (3, 5) with this key.',item:{q:`${'<table class="mat"><tbody><tr><td>2</td><td>1</td></tr><tr><td>1</td><td>1</td></tr></tbody></table>'} × <table class="mat"><tbody><tr><td>3</td></tr><tr><td>5</td></tr></tbody></table> = ?`,type:'fields',fields:[{label:'top',ans:11},{label:'bottom',ans:8}],sol:'Top row: 2·3 + 1·5 = 11. Bottom row: 1·3 + 1·5 = 8. <b>(11, 8)</b>.'}},
+ gni:`<div class="rule"><b>Multiply:</b> entry (i, j) = row i of A · column j of B. A must have as many columns as B has rows. AB usually ≠ BA.</div><div class="rule"><b>Determinant</b> of [[a, b], [c, d]] = ad − bc. If it’s 0, the matrix has no inverse.<br>Inverse = (1/det)·[[d, −b], [−c, a]]</div><div class="ex">[[1, 2], [3, 4]] · [[5, 6], [7, 8]]<br>= [[1·5 + 2·7, 1·6 + 2·8], [3·5 + 4·7, 3·6 + 4·8]]<br>= [[19, 22], [43, 50]]</div>`,
+ dev:'Matrices run graphics, crypto, and signal processing. Solving systems with matrices is how computers do the work from the Systems phase at scale.',
+ gen(d){const f=pick(d===1?['det2']:d===2?['det2','mul']:['mul','det3']);
+  if(f==='det2'){const A=[[ri(-9,9),ri(-9,9)],[ri(-9,9),ri(-9,9)]],D=A[0][0]*A[1][1]-A[0][1]*A[1][0];return {q:`Find the determinant of ${mat(A)}`,type:'num',ans:D,sol:`(${N(A[0][0])})(${N(A[1][1])}) − (${N(A[0][1])})(${N(A[1][0])}) = <b>${N(D)}</b>.`};}
+  if(f==='mul'){const A=[[ri(-5,5),ri(-5,5)],[ri(-5,5),ri(-5,5)]],B=[[ri(-5,5),ri(-5,5)],[ri(-5,5),ri(-5,5)]],C=[0,1].map(i=>[0,1].map(j=>A[i][0]*B[0][j]+A[i][1]*B[1][j]));
+   return {q:`Compute ${mat(A)} × ${mat(B)}`,type:'fields',fields:[{label:'row 1, col 1',ans:C[0][0]},{label:'row 1, col 2',ans:C[0][1]},{label:'row 2, col 1',ans:C[1][0]},{label:'row 2, col 2',ans:C[1][1]}],sol:`Row times column for each entry: <b>${mat(C)}</b>`};}
+  const A=[0,1,2].map(()=>[0,1,2].map(()=>ri(-4,4))),D=det3(A),m=[A[1][1]*A[2][2]-A[1][2]*A[2][1],A[1][0]*A[2][2]-A[1][2]*A[2][0],A[1][0]*A[2][1]-A[1][1]*A[2][0]];
+  return {q:`Find the determinant of ${mat(A)}`,type:'num',ans:D,sol:`Expand along row 1: ${N(A[0][0])}(${N(m[0])}) − ${P(A[0][1])}(${N(m[1])}) + ${P(A[0][2])}(${N(m[2])}) = <b>${N(D)}</b>.`};}},
+{id:'conic',title:'Conic sections',bloom:'Analyze',
+ hint:'Circle: (x − h)² + (y − k)² = r². From x² + y² + Dx + Ey + F = 0: h = −D/2, k = −E/2, r² = h² + k² − F.',
+ ce:{text:'A radio’s coverage on your km grid is x² + y² − 6x + 4y − 12 = 0. Where is the radio, and what’s its range?',item:{q:'Center (h, k) and radius r',type:'fields',fields:[{label:'h',ans:3},{label:'k',ans:-2},{label:'r (km)',ans:5}],sol:'Complete the square: (x − 3)² + (y + 2)² = 12 + 9 + 4 = 25. <b>Center (3, −2), radius 5 km</b>.'}},
+ gni:`<div class="rule">Circle: (x − h)² + (y − k)² = r²<br>Parabola: y = a(x − h)² + k (only one variable squared)<br>Ellipse: x²/a² + y²/b² = 1 (both squared, same sign, different coefficients)<br>Hyperbola: x²/a² − y²/b² = 1 (both squared, opposite signs)</div><div class="ex">x² + y² + 8x − 2y + 8 = 0<br>(x + 4)² + (y − 1)² = −8 + 16 + 1 = 9<br>center (−4, 1), r = 3</div>`,
+ dev:'Coverage areas are circles, antenna dishes are parabolas, orbits are ellipses, and some direction-finding methods (TDOA) place an emitter on a hyperbola.',
+ gen(d){if(d<3||Math.random()<.5){const h=nz(-6,6),k=nz(-6,6),r=ri(1,9),F=h*h+k*k-r*r;return {q:`Find the center and radius: x² + y²${term(-2*h,'x',false)}${term(-2*k,'y',false)}${sg(F)} = 0`,type:'fields',fields:[{label:'h',ans:h},{label:'k',ans:k},{label:'r',ans:r}],sol:`h = −D/2 = ${N(h)}, k = −E/2 = ${N(k)}. r² = ${h*h} + ${k*k} − ${P(F)} = ${r*r}. <b>Center (${N(h)}, ${N(k)}), r = ${r}</b>.`};}
+  const t=ri(0,3),A=ri(1,5);let C;do{C=ri(1,5)}while(C===A);const n=ri(4,40);
+  const eq=[`${A===1?'':A}x² + ${A===1?'':A}y² = ${A*n}`,`${A===1?'':A}x² + ${C===1?'':C}y² = ${n*A*C}`,`${A===1?'':A}x² ${M} ${C===1?'':C}y² = ${n}`,pick([`y = ${poly([nz(-3,3),ri(-6,6),ri(-9,9)])}`,`x = ${poly([nz(-3,3),ri(-6,6),ri(-9,9)],'y')}`])][t],opts=['Circle','Ellipse','Hyperbola','Parabola'],why=['both squared with equal coefficients','both squared, same sign, different coefficients','both squared with opposite signs','only one variable is squared'];
+  return {q:`Which conic is ${eq}?`,type:'choice',options:opts,ans:t,sol:`<b>${opts[t]}</b>: ${why[t]}.`};}},
+{id:'binom',title:'The binomial theorem',bloom:'Apply',
+ hint:'Coefficient of xᵏ in (ax + c)ⁿ is C(n, k)·aᵏ·cⁿ⁻ᵏ. C(n, k) = n!/(k!(n − k)!).',
+ ce:{text:'Expanding (x + 2)⁴ by hand takes a while. What’s the coefficient of the x² term?',item:{q:'Coefficient of x² in (x + 2)⁴',type:'num',ans:24,sol:'C(4, 2)·2² = 6 × 4 = <b>24</b>. Full expansion: x⁴ + 8x³ + 24x² + 32x + 16.'}},
+ gni:`<div class="rule">(a + b)ⁿ = Σ C(n, k)·aⁿ⁻ᵏ·bᵏ, for k = 0 to n.<br>C(n, k) = n! / (k!(n − k)!), also row n of Pascal’s triangle.</div><div class="ex">Pascal row 5: 1 5 10 10 5 1<br>coefficient of x² in (x + 2)⁵ = C(5, 3)·2³ = 10 · 8 = 80</div><p>The coefficient includes the sign: if c is negative, odd powers of it are negative.</p>`,
+ dev:'The binomial theorem is the bridge to probability: the odds of k hits in n shots come from the same C(n, k) numbers.',
+ gen(d){const n=ri(3,d===1?5:7),k=ri(0,n),c=nz(-3,3),a=d===3?pick([2,3]):1,v=Cnk(n,k)*a**k*c**(n-k);
+  return {q:`Find the coefficient of ${k===0?'the constant term':'x'+(k>1?sup(k):'')} in (${poly([a,c])})${sup(n)}.`,type:'num',ans:v,sol:`C(${n}, ${k})${a!==1?' · '+a+sup(k):''} · ${P(c)}${sup(n-k)} = ${Cnk(n,k)}${a!==1?' · '+a**k:''} · ${N(c**(n-k))} = <b>${N(v)}</b>.`};}}
+]}
+];
+const ROMAN=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI'];
+const LESSONS=[],LESSON={};
+PHASES.forEach((ph,pi)=>ph.lessons.forEach((l,li)=>{l.num=`${pi+1}-${li+1}`;l.phase=pi;LESSONS.push(l);LESSON[l.id]=l;}));
+
+/* ===== state ===== */
+const KEY='algebra-ops-v1';
+let S={lessons:{},journal:[],diag:null};
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){}
+let saveT=null;
+function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}},150);}
+function LS(id){return S.lessons[id]||(S.lessons[id]={step:0,hist:[],att:0,cor:0,go:false,pp:'',dev:'',gni:false,ceOK:null});}
+const $=(s,el=document)=>el.querySelector(s);
+function h(tag,attrs,...kids){const el=document.createElement(tag);for(const [k,v] of Object.entries(attrs||{})){if(v===false||v==null)continue;if(k==='class')el.className=v;else if(k==='html')el.innerHTML=v;else if(k.startsWith('on'))el.addEventListener(k.slice(2),v);else el.setAttribute(k,v===true?'':v);}for(const c of kids.flat()){if(c==null||c===false)continue;el.append(c.nodeType?c:document.createTextNode(c));}return el;}
+const PP_PROMPTS=['What did you try, step by step?','What happened? Did it match the answer?','What was hard, or what surprised you?'];
+
+/* ===== routing ===== */
+let view={name:'home'};
+function go(name,arg){view={name,arg};render();window.scrollTo(0,0);}
+function render(){const app=$('#app');app.replaceChildren();document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===view.name||(view.name==='lesson'&&b.dataset.v==='home')?'page':'false'));({home:vHome,lesson:vLesson,diag:vDiag,sandbox:vSandbox,journal:vJournal,method:vMethod})[view.name](app);}
+function status(l){const L=S.lessons[l.id];if(!L)return 'new';if(L.go)return 'go';if(L.ceOK!=null||L.att)return 'prog';return 'new';}
+const nextLesson=()=>LESSONS.find(l=>!LS(l.id).go)||LESSONS[0];
+
+/* ===== home ===== */
+function vHome(app){
+  const done=LESSONS.filter(l=>S.lessons[l.id]&&S.lessons[l.id].go).length,nx=nextLesson();
+  app.append(h('section',{class:'hero'},
+    h('h1',{class:'stencil'},'Algebra Ops'),
+    h('p',{class:'lead'},'Self-paced algebra, from order of operations through matrices and conics. Every task runs the Experiential Learning Model: try it cold, reflect, learn the rule, connect it to your work, then train to standard.'),
+    h('div',{class:'progress'},h('div',{class:'bar',role:'progressbar','aria-valuemin':0,'aria-valuemax':LESSONS.length,'aria-valuenow':done},h('i',{style:`width:${done/LESSONS.length*100}%`})),h('span',{class:'mono small'},`${done} of ${LESSONS.length} tasks at GO`)),
+    h('div',{class:'row'},h('button',{class:'btn primary',onclick:()=>go('lesson',nx.id)},done?`Continue with task ${nx.num}`:'Start task 1-1'),h('button',{class:'btn',onclick:()=>go('diag')},S.diag?'View diagnostic':'Take the diagnostic'),h('button',{class:'btn ghost',onclick:()=>go('method')},'How this course works'))));
+  if(S.diag){const i=S.diag.res.findIndex(x=>!x);app.append(h('p',{class:'callout'},i<0?'Your diagnostic was clean across all phases. Pick any task and train to GO, or jump to Phase XI.':`Diagnostic recommendation: start at Phase ${ROMAN[i]}, ${PHASES[i].name.toLowerCase()}.`));}
+  PHASES.forEach((ph,pi)=>{const g=h('div',{class:'grid'});
+    ph.lessons.forEach(l=>{const st=status(l);g.append(h('button',{class:'lcard '+st,onclick:()=>go('lesson',l.id)},h('span',{class:'num mono'},'Task '+l.num),h('span',{class:'t'},l.title),h('span',{class:'chip '+st},st==='go'?'GO':st==='prog'?'In progress':'Not started')));});
+    const gd=ph.lessons.filter(l=>status(l)==='go').length;
+    app.append(h('section',{class:'phase'},h('div',{class:'phead'},h('h2',{},h('span',{class:'roman'},ROMAN[pi]),ph.name),h('span',{class:'mono small'},`${gd}/${ph.lessons.length}`)),g));});
+}
+
+/* ===== keypad + item widget ===== */
+function keypad(getT){const K=[['x','x'],['^','^'],['(','('],[')',')'],['/','/'],['√','sqrt('],['π','pi'],['−','-'],['≤','<='],['≥','>=']];
+  return h('div',{class:'keys','aria-label':'Math keys'},K.map(([lab,ins])=>h('button',{type:'button',onpointerdown:e=>e.preventDefault(),onclick:()=>{const t=getT();if(!t||t.disabled)return;const a=t.selectionStart??t.value.length,b=t.selectionEnd??a;t.value=t.value.slice(0,a)+ins+t.value.slice(b);t.focus();t.setSelectionRange(a+ins.length,a+ins.length);}},lab)));}
+const PH={num:'Number (fractions OK, like 3/4)',set:'e.g. 3, -2  or  none',expr:'e.g. 2x+5 or (x+1)(x-3)',ineq:'e.g. x < 4 or x >= -2'};
+function itemWidget(item,{onResult=()=>{}}={}){
+  const w=h('div',{class:'item'});w.append(h('div',{class:'q',html:item.q}));
+  const fb=h('div',{class:'fb','aria-live':'polite'});let done=false,inputs=[],last=null,cb=null,choiceBtns=[];
+  const finish=(r,revealed)=>{done=true;inputs.forEach(i=>i.disabled=true);if(cb)cb.disabled=true;choiceBtns.forEach(b=>b.disabled=true);
+    fb.className='fb '+(r.ok?'go':'nogo');fb.replaceChildren(h('strong',{},r.ok?'GO':(revealed?'Solution shown (counts as NO-GO)':'NO-GO')));
+    if(r.msg)fb.append(h('span',{},' '+r.msg));if(item.sol)fb.append(h('div',{class:'sol',html:item.sol}));onResult(r.ok);};
+  if(item.type==='choice'){const box=h('div',{class:'choices'});item.options.forEach((o,i)=>{const b=h('button',{type:'button',onclick:()=>{if(done)return;const ok=i===item.ans;b.classList.add(ok?'right':'wrong');if(!ok&&choiceBtns[item.ans])choiceBtns[item.ans].classList.add('right');finish({ok});}},o);choiceBtns.push(b);box.append(b);});w.append(box);
+    w.reveal=()=>{if(done)return;choiceBtns[item.ans].classList.add('right');finish({ok:false},true);};w.append(fb);return w;}
+  const mk=ph=>{const i=h('input',{type:'text',placeholder:ph||'',autocomplete:'off',autocapitalize:'off',autocorrect:'off',spellcheck:'false',enterkeyhint:'done'});i.addEventListener('focus',()=>last=i);i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doCheck();}});inputs.push(i);return i;};
+  if(item.type==='fields'){w.append(h('div',{class:'fields'},item.fields.map(f=>h('label',{class:'field'},h('span',{},f.label),mk('')))));}
+  else w.append(mk(PH[item.type]));
+  w.append(keypad(()=>last||inputs[0]));
+  function doCheck(){if(done)return;const r=check(item,item.type==='fields'?inputs.map(i=>i.value):inputs[0].value);if(r.err){fb.className='fb err';fb.textContent=r.err;return;}finish(r);}
+  cb=h('button',{class:'btn primary',type:'button',onclick:doCheck},'Check answer');w.append(h('div',{class:'row'},cb));w.append(fb);
+  w.reveal=()=>{if(!done)finish({ok:false},true);};
+  return w;
+}
+
+/* ===== grapher ===== */
+const COLS=['--c1','--c2','--c3'];
+function fmt1(v){return (Math.round(v*10)/10).toString().replace('-',M);}
+function lab(v){if(Math.abs(v)<1e-9)return '0';return String(+v.toPrecision(6)).replace('-',M);}
+function grapher({exprs,params={},editable=false,trace=false}){
+  const st={cx:0,cy:0,u:null,exprs:exprs.slice(),params:{...params},nodes:[],vk:null};
+  const wrap=h('div',{class:'grapher'}),cv=h('canvas',{role:'img','aria-label':'Graph of the functions'}),exW=h('div',{class:'gex'}),slW=h('div',{class:'gsl'});
+  let ti=null,tout=null;
+  st.exprs.forEach((s,i)=>{const sw=h('span',{class:'sw',style:`background:var(${COLS[i]})`});
+    if(editable){const inp=h('input',{type:'text',value:s,placeholder:i===0?'e.g. 2x+1':'optional',autocomplete:'off',autocapitalize:'off',spellcheck:'false','aria-label':`Function ${i+1}`});inp.addEventListener('input',()=>{st.exprs[i]=inp.value;compile();});exW.append(h('label',{class:'gline'},sw,h('span',{class:'mono'},'y ='),inp,h('span',{class:'gerr'})));}
+    else exW.append(h('div',{class:'gline'},sw,h('span',{class:'mono'},'y = '+s.replace(/\^2/g,'²').replace(/\^3/g,'³').replace(/\*/g,'').replace(/-/g,' '+M+' ').replace(/\+/g,' + ')),h('span',{class:'gerr'})));});
+  function buildSliders(vs){slW.replaceChildren();vs.forEach(v=>{if(!(v in st.params))st.params[v]=1;const out=h('output',{class:'mono'},fmt1(st.params[v]));const r=h('input',{type:'range',min:-10,max:10,step:0.1,value:st.params[v],'aria-label':`Slider ${v}`});r.addEventListener('input',()=>{st.params[v]=parseFloat(r.value);out.textContent=fmt1(st.params[v]);draw();updTrace();});slW.append(h('label',{class:'gs'},h('span',{class:'mono'},v+' ='),out,r));});}
+  function compile(){const vs=new Set();st.nodes=st.exprs.map((s,i)=>{const er=exW.children[i]&&exW.children[i].querySelector('.gerr');if(!s.trim()){if(er)er.textContent='';return null;}try{const n=parse(clean(s));vars(n).forEach(v=>{if(v!=='x')vs.add(v)});if(er)er.textContent='';return n;}catch(e){if(er)er.textContent='Can’t read this yet';return null;}});
+    const key=[...vs].sort().join(',');if(key!==st.vk){st.vk=key;buildSliders([...vs].sort());}draw();updTrace();}
+  function updTrace(){if(!trace||!ti)return;let x;try{x=numVal(ti.value)}catch(e){tout.textContent='';return;}tout.replaceChildren(...st.nodes.map((n,i)=>{if(!n)return null;let y;try{y=ev(n,{...st.params,x})}catch(e){y=NaN}return h('span',{class:'tr'},h('span',{class:'sw',style:`background:var(${COLS[i]})`}),isFinite(y)?lab(y):'undefined');}).filter(Boolean));}
+  function draw(){if(!cv.isConnected)return;const w=cv.clientWidth,H=cv.clientHeight;if(!w||!H)return;const dpr=window.devicePixelRatio||1;cv.width=Math.round(w*dpr);cv.height=Math.round(H*dpr);const g=cv.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);
+    if(st.u==null)st.u=20/w;const u=st.u,cs=getComputedStyle(document.documentElement),C=n=>cs.getPropertyValue(n).trim();
+    const x0=st.cx-w/2*u,y0=st.cy-H/2*u,X=x=>(x-x0)/u,Y=y=>H-(y-y0)/u;
+    g.fillStyle=C('--surface');g.fillRect(0,0,w,H);
+    const span=w*u,raw=span/10,p10=Math.pow(10,Math.floor(Math.log10(raw))),step=[1,2,5,10].map(m=>m*p10).find(s=>s>=raw);
+    g.lineWidth=1;g.strokeStyle=C('--grid');g.beginPath();
+    for(let x=Math.ceil(x0/step)*step;x<=x0+span;x+=step){const px=Math.round(X(x))+.5;g.moveTo(px,0);g.lineTo(px,H);}
+    for(let y=Math.ceil(y0/step)*step;y<=y0+H*u;y+=step){const py=Math.round(Y(y))+.5;g.moveTo(0,py);g.lineTo(w,py);}
+    g.stroke();g.strokeStyle=C('--muted');g.lineWidth=1.25;g.beginPath();const ax=X(0),ay=Y(0);if(ax>=0&&ax<=w){g.moveTo(ax,0);g.lineTo(ax,H);}if(ay>=0&&ay<=H){g.moveTo(0,ay);g.lineTo(w,ay);}g.stroke();
+    g.fillStyle=C('--muted');g.font='11px "IBM Plex Mono", ui-monospace, monospace';const ly=Math.min(Math.max(ay+13,13),H-4),lx=Math.min(Math.max(ax+4,4),w-34);
+    for(let x=Math.ceil(x0/step)*step;x<=x0+span;x+=step){if(Math.abs(x)<step/2)continue;g.fillText(lab(x),X(x)+3,ly);}
+    for(let y=Math.ceil(y0/step)*step;y<=y0+H*u;y+=step){if(Math.abs(y)<step/2)continue;g.fillText(lab(y),lx,Y(y)-3);}
+    st.nodes.forEach((n,i)=>{if(!n)return;g.strokeStyle=C(COLS[i]);g.lineWidth=2.5;g.lineJoin='round';g.beginPath();let pen=false,prev=null;
+      for(let px=0;px<=w;px++){const x=x0+px*u;let y;try{y=ev(n,{...st.params,x})}catch(e){y=NaN}if(!isFinite(y)){pen=false;prev=null;continue;}const py=Math.max(-5000,Math.min(5000,Y(y)));if(pen&&prev!=null&&Math.abs(py-prev)>H*1.5)pen=false;if(!pen){g.moveTo(px,py);pen=true;}else g.lineTo(px,py);prev=py;}
+      g.stroke();});}
+  const zoom=f=>{st.u*=f;draw();};
+  let drag=null;cv.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,cx:st.cx,cy:st.cy};cv.setPointerCapture(e.pointerId);});
+  cv.addEventListener('pointermove',e=>{if(!drag)return;st.cx=drag.cx-(e.clientX-drag.x)*st.u;st.cy=drag.cy+(e.clientY-drag.y)*st.u;draw();});
+  const end=()=>drag=null;cv.addEventListener('pointerup',end);cv.addEventListener('pointercancel',end);
+  cv.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY>0?1.15:1/1.15);},{passive:false});
+  wrap.append(exW,cv,h('div',{class:'row gctl'},h('button',{class:'btn small',type:'button',onclick:()=>zoom(1/1.4)},'Zoom in'),h('button',{class:'btn small',type:'button',onclick:()=>zoom(1.4)},'Zoom out'),h('button',{class:'btn small ghost',type:'button',onclick:()=>{st.cx=0;st.cy=0;st.u=20/cv.clientWidth;draw();}},'Reset view')),slW);
+  if(trace){ti=h('input',{type:'text',value:'2',inputmode:'decimal','aria-label':'Trace x value'});tout=h('div',{class:'trout mono'});ti.addEventListener('input',updTrace);wrap.append(h('div',{class:'trace'},h('label',{class:'gline'},h('span',{class:'mono'},'Trace at x ='),ti),tout));}
+  if('ResizeObserver' in window)new ResizeObserver(()=>draw()).observe(cv);
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);}catch(e){}
+  compile();requestAnimationFrame(draw);
+  return wrap;
+}
+
+/* ===== lesson (ELM) ===== */
+const STEPS=[['Concrete experience','Try it cold'],['Publish and process','Reflect'],['Generalize new information','Learn the rule'],['Develop','Connect it'],['Apply','Train to standard']];
+function vLesson(app){
+  const l=LESSON[view.arg],L=LS(l.id);
+  const goChip=h('span',{class:'chip go',hidden:!L.go},'GO');
+  app.append(h('div',{class:'lhead'},h('button',{class:'link',onclick:()=>go('home')},'Back to dashboard'),
+    h('div',{class:'lmeta'},h('span',{class:'mono small'},`Task ${l.num}, Phase ${ROMAN[l.phase]}`),h('span',{class:'chip'},'Bloom’s: '+l.bloom),goChip),
+    h('h1',{class:'ltitle'},l.title)));
+  const stepper=h('div',{class:'stepper',role:'tablist','aria-label':'Lesson steps'}),panel=h('div',{class:'panel',role:'tabpanel'});
+  const isDone=i=>[L.ceOK!=null,!!L.pp.trim(),!!L.gni,!!L.dev.trim(),L.go][i];
+  STEPS.forEach(([t,sub],i)=>stepper.append(h('button',{role:'tab',type:'button',onclick:()=>show(i)},h('span',{class:'ck'}),h('span',{class:'st'},h('b',{},t),h('small',{},sub)))));
+  function refreshSteps(){[...stepper.children].forEach((b,j)=>{b.setAttribute('aria-selected',j===L.step?'true':'false');b.querySelector('.ck').textContent=isDone(j)?'✓':String(j+1);b.classList.toggle('done',isDone(j));});goChip.hidden=!L.go;}
+  const nextBtn=(i,t)=>h('div',{class:'row end'},h('button',{class:'btn primary',onclick:()=>{show(i);stepper.scrollIntoView({block:'start',behavior:'smooth'});}},t));
+  function show(i){L.step=i;if(i===2)L.gni=true;save();refreshSteps();panel.replaceChildren();[stepCE,stepPP,stepGNI,stepDEV,stepAPPLY][i]();}
+  function stepCE(){panel.append(h('h2',{},'Concrete experience'),h('p',{class:'note'},'Take a shot at this before any instruction. You’ll see what you already know. A wrong answer here costs nothing.'),h('p',{class:'scenario'},l.ce.text));
+    if(l.ce.graph)panel.append(grapher({exprs:l.ce.graph.exprs,params:l.ce.graph.params}));
+    const nb=nextBtn(1,'Continue to reflect');nb.hidden=L.ceOK==null;
+    panel.append(itemWidget(l.ce.item,{onResult:ok=>{L.ceOK=ok;save();refreshSteps();nb.hidden=false;}}),nb);}
+  function stepPP(){panel.append(h('h2',{},'Publish and process'),h('p',{class:'note'},'Write a few honest lines about the attempt. Naming what tripped you up is what makes the next step stick.'));
+    if(L.ceOK!=null)panel.append(h('div',{class:'callout '+(L.ceOK?'okc':'')},h('b',{},L.ceOK?'You got the cold attempt. ':'The cold attempt didn’t land, which is normal. '),h('span',{html:l.ce.item.sol})));
+    else panel.append(h('p',{class:'callout'},'You haven’t tried the concrete experien
